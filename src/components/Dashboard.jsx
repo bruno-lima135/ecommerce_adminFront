@@ -5,9 +5,9 @@ import Card from "react-bootstrap/Card";
 function Dashboard() {
   return (
     <>
-      <div className="main-container">
+      <div className="main-container ">
         <div className="">
-          <div className="content-container w-100">
+          <div className="content-container ">
             <span>
               <img src="" alt="" />
             </span>
