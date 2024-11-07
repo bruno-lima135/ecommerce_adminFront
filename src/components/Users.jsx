@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Users() {
   return (
@@ -6,7 +7,9 @@ function Users() {
       <div>
         <div className="d-flex">
           <h3>Users</h3>
-          <button className="btn ms-auto">Add user</button>
+          <Link className="ms-auto me-5" to={"/users/addUser"}>
+            Add User
+          </Link>
         </div>
 
         <table className="table table-striped">
@@ -28,7 +31,10 @@ function Users() {
 
               <th>Lorem ipsum dolor sit.</th>
               <th>Lorem ipsum dolor sit.</th>
-              <th>Edit</th>
+              <th>
+                <Link to={"/users/:userId"}>Edit</Link>
+                <Link to={"/users"}>Delete</Link>
+              </th>
             </tr>
           </tbody>
         </table>

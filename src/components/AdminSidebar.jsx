@@ -9,8 +9,6 @@ function AdminSidebar() {
         <Link to={"/users"}>Users</Link>
         <Link to={"/orders"}>Orders</Link>
       </div>
-
-      <Link to={"/"}>Return to website</Link>
     </>
   );
 }

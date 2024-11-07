@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 
 function Dashboard() {
@@ -29,14 +29,14 @@ function Dashboard() {
                   <Card.Title>Conversion Rate</Card.Title>
                   <Card.Text>19.16%</Card.Text>
                 </Card.Body>
-                <Card.Footer>View All</Card.Footer>
+                <Card.Footer> View All</Card.Footer>
               </Card>
               <Card style={{ width: "18rem" }}>
                 <Card.Body>
                   <Card.Title>Avg. Click Rate</Card.Title>
                   <Card.Text>24.57%</Card.Text>
                 </Card.Body>
-                <Card.Footer>View All</Card.Footer>
+                <Card.Footer> View All</Card.Footer>
               </Card>
             </div>
 
@@ -55,43 +55,17 @@ function Dashboard() {
                   <th>Lorem ipsum dolor sit.</th>
                   <th>Lorem ipsum dolor sit.</th>
                   <th>Lorem ipsum dolor sit.</th>
-                  <th>View</th>
+                  <th>
+                    <Link to={"/orders/ejemplo"}> View</Link>
+                  </th>
                 </tr>
                 <tr>
                   <th>Lorem ipsum dolor sit.</th>
                   <th>Lorem ipsum dolor sit.</th>
                   <th>Lorem ipsum dolor sit.</th>
-                  <th>View</th>
-                </tr>
-                <tr>
-                  <th>Lorem ipsum dolor sit.</th>
-                  <th>Lorem ipsum dolor sit.</th>
-                  <th>Lorem ipsum dolor sit.</th>
-                  <th>View</th>
-                </tr>
-                <tr>
-                  <th>Lorem ipsum dolor sit.</th>
-                  <th>Lorem ipsum dolor sit.</th>
-                  <th>Lorem ipsum dolor sit.</th>
-                  <th>View</th>
-                </tr>
-                <tr>
-                  <th>Lorem ipsum dolor sit.</th>
-                  <th>Lorem ipsum dolor sit.</th>
-                  <th>Lorem ipsum dolor sit.</th>
-                  <th>View</th>
-                </tr>
-                <tr>
-                  <th>Lorem ipsum dolor sit.</th>
-                  <th>Lorem ipsum dolor sit.</th>
-                  <th>Lorem ipsum dolor sit.</th>
-                  <th>View</th>
-                </tr>
-                <tr>
-                  <th>Lorem ipsum dolor sit.</th>
-                  <th>Lorem ipsum dolor sit.</th>
-                  <th>Lorem ipsum dolor sit.</th>
-                  <th>View</th>
+                  <th>
+                    <Link to={"/orders/0213kasdmas"}> View</Link>
+                  </th>
                 </tr>
               </tbody>
             </table>
