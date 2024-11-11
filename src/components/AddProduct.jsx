@@ -10,7 +10,10 @@ function AddProduct() {
 
       <Link to="/products">Go back</Link>
       <div>
-        <form action="">
+        <form
+          action="http://localhost/3003/products/storeProduct"
+          method="post"
+        >
           <label htmlFor="name">name</label>
           <input className="form-control" type="text" name="name" id="name" />
           <label htmlFor="name">Description</label>
