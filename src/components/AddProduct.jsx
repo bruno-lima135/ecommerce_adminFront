@@ -1,23 +1,58 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
 
 function AddProduct() {
+  const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+    image: "",
+    price: Number,
+    stock: Number,
+    category: "",
+    outstanding: false,
+    slug: "",
+    ingredients: [],
+  });
+
+  const handleChange = (event) => {
+    const inputName = event.target.name;
+    const value = event.target.value;
+    setFormData((prev) => {
+      return { ...prev, [inputName]: value };
+    });
+  };
+
+  async function handleAddProduct(event) {
+    event.preventDefault();
+    return await axios({
+      method: "POST",
+      url: `${import.meta.env.VITE_API_URL}/products/store`,
+      data: { formData },
+    });
+  }
+
   return (
     <>
-      <div>
-        <h1>Add Product</h1>
-      </div>
-
       <Link to="/products">Go back</Link>
       <div>
         <form
-          action="http://localhost/3003/products/storeProduct"
+          action=""
           method="post"
+          onSubmit={(event) => handleAddProduct(event)}
         >
           <label htmlFor="name">name</label>
-          <input className="form-control" type="text" name="name" id="name" />
+          <input
+            className="form-control"
+            onChange={handleChange}
+            type="text"
+            name="name"
+            id="name"
+          />
           <label htmlFor="name">Description</label>
           <textarea
+            onChange={handleChange}
             className="form-control"
             name="description"
             id="description"
@@ -30,6 +65,7 @@ function AddProduct() {
             type="number"
             name="price"
             id="price"
+            onChange={handleChange}
           />
           <label htmlFor="stock">Stock</label>
           <input
@@ -37,21 +73,38 @@ function AddProduct() {
             type="number"
             name="stock"
             id="stock"
+            onChange={handleChange}
           />
           <label htmlFor="category">Category</label>
-          <select className="form-control" name="category" id="category">
+          <select
+            className="form-control"
+            name="category"
+            id="category"
+            onChange={handleChange}
+          >
             <option value="bars">Bars</option>
             <option value="60ml">Shot</option>
             <option value="330ml">330ml</option>
             <option value="500ml">500ml</option>
           </select>
           <label htmlFor="outstanding">Outstanding</label>
-          <select className="form-control" name="outstanding" id="outstanding">
+          <select
+            className="form-control"
+            name="outstanding"
+            id="outstanding"
+            onChange={handleChange}
+          >
             <option value="true">True</option>
             <option value="false">False</option>
           </select>
           <label htmlFor="slug">Slug</label>
-          <input className="form-control" type="text" name="slug" id="slug" />
+          <input
+            className="form-control"
+            type="text"
+            name="slug"
+            id="slug"
+            onChange={handleChange}
+          />
           ingredients
           <input type="checkbox" id="tomato" name="tomato" value="tomate" />
           <label htmlFor="tomato">Tomato</label>
