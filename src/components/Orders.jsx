@@ -4,7 +4,7 @@ function Orders() {
   return (
     <>
       <div>
-        <h1>Orders</h1>
+        <h1 className="d-flex justify-content-center mt-5 mb-5">Orders</h1>
       </div>
 
       <div className="">

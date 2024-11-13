@@ -6,13 +6,13 @@ function Users() {
     <>
       <div>
         <div className="d-flex">
-          <h3>Users</h3>
-          <Link className="ms-auto me-5" to={"/users/addUser"}>
+          <h3 className="mt-3 mb-3">Users</h3>
+          <Link className="ms-auto me-5 fs-5 " to={"/users/addUser"}>
             Add User
           </Link>
         </div>
 
-        <table className="table table-striped">
+        <table className="table table-striped ">
           <thead>
             <tr>
               <th>Id</th>

@@ -12,10 +12,10 @@ function Dashboard() {
               <img src="" alt="" />
             </span>
 
-            <h2>Dashboard</h2>
-            <h6>Last 30 days</h6>
+            <h2  className="d-flex justify-content-center m-4">Dashboard</h2>
+            <h6 className="d-flex justify-content-center  m-4">Last 30 days</h6>
 
-            <div className="cards-container d-flex">
+            <div className="cards-container d-flex justify-content-center">
               <Card style={{ width: "18rem" }}>
                 <Card.Body>
                   <Card.Title>Monthly Sales(USD)</Card.Title>
@@ -40,8 +40,8 @@ function Dashboard() {
               </Card>
             </div>
 
-            <h5>Last 10 orders</h5>
-            <table className="table table-striped">
+            <h5 className="d-flex justify-content-center m-4">Last 10 orders</h5>
+            <table className="table table-striped ">
               <thead>
                 <tr>
                   <th>Id</th>

@@ -52,8 +52,8 @@ function Products() {
                 <th>{product.stock}</th>
                 <th>
                   {" "}
-                  <Link to={`/products/edit/${product.id}`}>Edit </Link>{" "}
-                  <button onClick={(event) => handleDestroy(product.id)}>
+                  <Link to={`/products/edit/${product.id}`} className="m-4">Edit </Link>{" "}
+                  <button onClick={(event) => handleDestroy(product.id)} className="rounded text-light bg-dark ">
                     Delete
                   </button>
                 </th>
