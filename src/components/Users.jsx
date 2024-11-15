@@ -19,6 +19,13 @@ function Users() {
       });
       console.log("deleted")
     }
+    async function handlecreate(adminId) {
+      return await axios({
+        method: "POST",
+        url: `${import.meta.env.VITE_API_URL}/admin/create/${adminId}`,
+      });
+      console.log("created")
+    }
 
   return (
     <>
