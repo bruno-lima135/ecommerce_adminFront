@@ -1,5 +1,6 @@
 import React ,{useState, useEffect} from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Users() {
   const [data,setData]= useState();
@@ -9,7 +10,16 @@ function Users() {
     .then((json)=>setData(json))
   },[data])
   if(!data){
-    return <div>Loading...</div>}
+    return <div>no hay mas usuarios</div>}
+
+    async function handleDestroy(adminId) {
+      return await axios({
+        method: "DELETE",
+        url: `${import.meta.env.VITE_API_URL}/admin/delete/${adminId}`,
+      });
+      console.log("deleted")
+    }
+
   return (
     <>
       <div>
@@ -41,7 +51,9 @@ function Users() {
               <th>Lorem ipsum dolor sit.</th>
               <th>
                 <Link to={"/users/:userId"}>Edit</Link>
-                <Link to={"/users"}>Delete</Link>
+                <button onClick={() => handleDestroy(data?.id)} className="rounded text-light bg-dark ">
+                    Delete
+                  </button>
               </th>
             </tr>
           </tbody>
