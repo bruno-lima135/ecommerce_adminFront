@@ -1,7 +1,15 @@
-import React from "react";
+import React ,{useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 
 function Users() {
+  const [data,setData]= useState();
+  useEffect(()=>{
+    fetch('http://localhost:3003/admin/show/1')
+    .then((response)=>response.json())
+    .then((json)=>setData(json))
+  },[data])
+  if(!data){
+    return <div>Loading...</div>}
   return (
     <>
       <div>
@@ -25,9 +33,9 @@ function Users() {
           </thead>
           <tbody>
             <tr>
-              <th>Lorem ipsum dolor sit.</th>
-              <th>Lorem ipsum dolor sit.</th>
-              <th>Lorem ipsum dolor sit.</th>
+              <th>{data?.id}</th>
+              <th>{data?.firstname}</th>
+              <th>{data?.lastname}</th>
 
               <th>Lorem ipsum dolor sit.</th>
               <th>Lorem ipsum dolor sit.</th>
