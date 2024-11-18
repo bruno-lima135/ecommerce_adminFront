@@ -5,7 +5,7 @@ function AddUser() {
     <>
       <div>
         <h1>Add User</h1>
-        <Link to={"/"}>Go back</Link>
+        <Link to={"/users"}>Go back</Link>
       </div>
 
       <div>
@@ -27,7 +27,12 @@ function AddUser() {
           />
 
           <label htmlFor="email">Email</label>
-          <input className="form-control" type="text" name="email" id="email" />
+          <input
+            className="form-control"
+            type="email"
+            name="email"
+            id="email"
+          />
           <label htmlFor="password">Password</label>
           <input
             className="form-control"
@@ -35,11 +40,7 @@ function AddUser() {
             name="password"
             id="password"
           />
-          <label htmlFor="role"></label>
-          <select name="role" id="role">
-            <option value="1">customer</option>
-            <option value="2">Admin</option>
-          </select>
+
           <button>Create</button>
         </form>
       </div>
