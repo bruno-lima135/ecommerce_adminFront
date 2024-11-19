@@ -1,43 +1,46 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-
+import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { ListGroup } from "react-bootstrap";
 
 function EditProduct() {
   const userData = useSelector((state) => state.user);
-  const [product, setProduct] = useState({});
   const params = useParams();
-  console.log(params.productSlug);
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+    price: 0,
+    stock: 0,
+    category: "juices",
+    outstanding: false,
+    slug: "",
+  });
+
   useEffect(() => {
     async function getProduct() {
       const response = await axios({
         method: "GET",
         url: ` ${import.meta.env.VITE_API_URL}/products/show/${
-          params.productSlug
+          params.productId
         }`,
         headers: { Authorization: `Bearer ${userData.token}` },
       });
-      console.log(response);
-      // setProduct(response.data);
+      const { name, description, price, stock, category, outstanding, slug } =
+        response.data;
+      setFormData({
+        ...formData,
+        name,
+        description,
+        price,
+        stock,
+        category,
+        outstanding,
+        slug,
+      });
     }
-
     getProduct();
   }, []);
-
-  const [formData, setFormData] = useState({
-    name: "",
-    description: "",
-    image: "",
-    price: Number,
-    stock: Number,
-    category: "",
-    outstanding: false,
-    slug: "",
-    ingredients: [],
-  });
-  console.log(product);
 
   async function handleChange(event) {
     const inputName = event.target.name;
@@ -50,85 +53,111 @@ function EditProduct() {
 
   async function handleEditProduct(event) {
     event.preventDefault();
-    return await axios({
+    await axios({
       method: "POST",
       url: `${import.meta.env.VITE_API_URL}/products/edit/${params.productId}`,
       data: { formData },
       headers: { Authorization: `Bearer ${userData.token}` },
     });
+    return navigate("/products");
   }
-
   return (
     <>
-      <div>
-        <h1>Edit product :ID...</h1>
-        <Link to={"/products"}>Go back</Link>
-      </div>
-
-      <div>
-        <form
-          action=""
-          method="post"
-          onSubmit={(event) => handleEditProduct(event)}
-        >
-          <label htmlFor="name">Name</label>
-          <input
-            className="form-control"
-            type="text"
-            name="name"
-            id="name"
-            onChange={handleChange}
-          />
-          <label htmlFor="description">Description</label>
-          <textarea
-            className="form-control"
-            name="description"
-            id="description"
-            onChange={handleChange}
-          ></textarea>
-          <label htmlFor="image">Image</label>
-          <input className="form-control" type="file" name="image" id="image" />
-          <label htmlFor="price">Price</label>
-          <input
-            className="form-control"
-            type="number"
-            name="price"
-            id="price"
-            onChange={handleChange}
-          />
-          <label htmlFor="stock">Stock</label>
-          <input
-            className="form-control"
-            type="number"
-            onChange={handleChange}
-          />
-          <label htmlFor="category">Category</label>
-          <select
-            className="form-control"
-            name="category"
-            id="category"
-            onChange={handleChange}
+      <div className="d-flex justify-content-center mt-5 ">
+        <div className=" border shadow rounded p-5">
+          <h1>Edit product</h1>
+          <form
+            action=""
+            method="post"
+            onSubmit={(event) => handleEditProduct(event)}
           >
-            <option value="bars">Bars</option>
-            <option value="60ml">Shot</option>
-            <option value="330ml">330ml</option>
-            <option value="500ml">500ml</option>
-          </select>
-          <label htmlFor="outstanding">Outstanding</label>
-          <select className="form-control" name="outstanding" id="outstanding">
-            <option value="true">True</option>
-            <option value="false">False</option>
-          </select>
-          <label htmlFor="slug">Slug</label>
-          <input
-            className="form-control"
-            type="text"
-            name="slug"
-            id="slug"
-            onChange={handleChange}
-          />
-          <button>Edit</button>
-        </form>
+            <label htmlFor="name">name</label>
+            <input
+              className="form-control"
+              onChange={handleChange}
+              type="text"
+              name="name"
+              id="name"
+              value={formData.name}
+            />
+            <label htmlFor="name" className="mt-2">
+              Description
+            </label>
+            <textarea
+              onChange={handleChange}
+              className="form-control"
+              name="description"
+              id="description"
+              value={formData.description}
+            ></textarea>
+            <label htmlFor="image" className="mt-3">
+              Image
+            </label>
+            <input className="form-control" type="file" />
+            <label htmlFor="price" className="mt-3">
+              Price
+            </label>
+            <input
+              className="form-control"
+              type="number"
+              name="price"
+              id="price"
+              onChange={handleChange}
+              value={formData.price}
+            />
+            <label htmlFor="stock" className="mt-2">
+              Stock
+            </label>
+            <input
+              className="form-control"
+              type="number"
+              name="stock"
+              id="stock"
+              onChange={handleChange}
+              value={formData.stock}
+            />
+            <label htmlFor="category" className="mt-2">
+              Category
+            </label>
+            <select
+              className="form-control"
+              name="category"
+              id="category"
+              onChange={handleChange}
+            >
+              <option value="bars">Bars</option>
+              <option value="juices">Juices</option>
+            </select>
+            <label htmlFor="outstanding" className="mt-2">
+              Outstanding
+            </label>
+            <select
+              className="form-control"
+              name="outstanding"
+              id="outstanding"
+              onChange={handleChange}
+            >
+              <option value="true">True</option>
+              <option value="false">False</option>
+            </select>
+            <label htmlFor="slug" className="mt-2">
+              Slug
+            </label>
+            <input
+              className="form-control"
+              type="text"
+              name="slug"
+              id="slug"
+              onChange={handleChange}
+              value={formData.slug}
+            />
+
+            <button className="mt-4 w-100 btn btn-success">Edit Product</button>
+          </form>
+          <Link to="/products" className="mt-4 btn border">
+            Go back
+          </Link>
+        </div>
       </div>
     </>
   );

@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
+import axios from "axios";
 
 function Dashboard() {
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    async function getOrders() {
+      const response = await axios({
+        method: "GET",
+        url: `${import.meta.env.VITE_API_URL}/orders`,
+      });
+      setOrders(response.data);
+    }
+    getOrders();
+  }, []);
+
   return (
     <>
       <div className="main-container ">
@@ -12,7 +26,7 @@ function Dashboard() {
               <img src="" alt="" />
             </span>
 
-            <h2  className="d-flex justify-content-center m-4">Dashboard</h2>
+            <h2 className="d-flex justify-content-center m-4">Dashboard</h2>
             <h6 className="d-flex justify-content-center  m-4">Last 30 days</h6>
 
             <div className="cards-container d-flex justify-content-center">
@@ -40,33 +54,28 @@ function Dashboard() {
               </Card>
             </div>
 
-            <h5 className="d-flex justify-content-center m-4">Last 10 orders</h5>
+            <h5 className="d-flex justify-content-center m-4">
+              Last 10 orders
+            </h5>
             <table className="table table-striped ">
               <thead>
                 <tr>
                   <th>Id</th>
-                  <th>User</th>
+                  <th>Buyer</th>
                   <th>Total Price</th>
-                  <th></th>
+                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th>Lorem ipsum dolor sit.</th>
-                  <th>Lorem ipsum dolor sit.</th>
-                  <th>Lorem ipsum dolor sit.</th>
-                  <th>
-                    <Link to={"/orders/ejemplo"}> View</Link>
-                  </th>
-                </tr>
-                <tr>
-                  <th>Lorem ipsum dolor sit.</th>
-                  <th>Lorem ipsum dolor sit.</th>
-                  <th>Lorem ipsum dolor sit.</th>
-                  <th>
-                    <Link to={"/orders/0213kasdmas"}> View</Link>
-                  </th>
-                </tr>
+                {orders &&
+                  orders.map((order) => (
+                    <tr key={order.id}>
+                      <th>{order.id}</th>
+                      <th>{order.buyer}</th>
+                      <th>{order.totalPrice}</th>
+                      <th>{order.state}</th>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>

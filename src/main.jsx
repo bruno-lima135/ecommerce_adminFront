@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import App from "./App.jsx";
 import { createBrowserRouter, Router, RouterProvider } from "react-router-dom";
 import Dashboard from "./components/Dashboard.jsx";
-import Users from "./components/Admins.jsx";
+import Users from "./components/Users.jsx";
 import Products from "./components/Products.jsx";
 import Orders from "./components/Orders.jsx";
 import Order from "./components/Order.jsx";
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
   },
   { path: "/login", element: <Login /> },
   { path: "/orders/:orderId", element: <Order /> },
-  { path: "/products/edit/:productSlug", element: <EditProduct /> },
+  { path: "/products/edit/:productId", element: <EditProduct /> },
   { path: "/products/addProduct", element: <AddProduct /> },
   { path: "/users/addUser", element: <AddUser /> },
   { path: "/users/:userId", element: <EditUser /> },

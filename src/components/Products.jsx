@@ -22,20 +22,23 @@ function Products() {
   }, []);
 
   async function handleDestroy(productId) {
-    return await axios({
+    const response = await axios({
       method: "GET",
       url: `${import.meta.env.VITE_API_URL}/products/destroy/${productId}`,
       headers: { Authorization: `Bearer ${userData.token}` },
     });
+    setProducts(response.data);
   }
 
-  console.log(products);
   return (
     <>
       <div className="d-flex">
         <h1>Products</h1>
 
-        <Link to={"/products/addProduct"} className="ms-auto me-5">
+        <Link
+          to={"/products/addProduct"}
+          className="ms-auto me-5 mt-5 btn border "
+        >
           Add product
         </Link>
       </div>
@@ -56,13 +59,15 @@ function Products() {
                 <th>{product.price}</th>
                 <th>{product.stock}</th>
                 <th>
-                  {" "}
-                  <Link to={`/products/edit/${product.slug}`} className="m-4">
-                    Edit{" "}
-                  </Link>{" "}
+                  <Link
+                    to={`/products/edit/${product.id}`}
+                    className="m-2 btn btn-primary"
+                  >
+                    Edit
+                  </Link>
                   <button
                     onClick={(event) => handleDestroy(product.id)}
-                    className="rounded text-light bg-dark "
+                    className=" btn btn-secondary"
                   >
                     Delete
                   </button>

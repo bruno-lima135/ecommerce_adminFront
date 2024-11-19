@@ -8,9 +8,13 @@ const userSlice = createSlice({
       state.token = action.payload.token;
       state.userId = action.payload.userId;
     },
+    logOut(state, action) {
+      state.token = "";
+      state.userId = "";
+    },
   },
 });
 
 const { reducer, actions } = userSlice;
-export const { saveUserData } = actions;
+export const { saveUserData, logOut } = actions;
 export default reducer;

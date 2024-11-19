@@ -38,11 +38,15 @@ function Login() {
   }
 
   return (
-    <div className="main-container ">
-      <div>
+    <div className="login-container d-flex justify-content-center align-items-center">
+      <div className="form-login-container border p-5 shadow rounded ">
+        <h1>Login Admin</h1>
         <form action="" onSubmit={(event) => handleLogin(event)}>
-          <label htmlFor="email">email</label>
+          <label htmlFor="email" className="">
+            email
+          </label>
           <input
+            className="form-control mt-2"
             type="text"
             name="email"
             id="name"
@@ -50,15 +54,19 @@ function Login() {
             onChange={(event) => handleChangeEmail(event)}
           />
 
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password" className="mt-2">
+            Password
+          </label>
           <input
+            className="form-control mt-2"
             type="password"
             name="password"
             id="password"
             value={password}
             onChange={(event) => handleChangePassword(event)}
           />
-          <button>Login</button>
+          <button className="btn btn-success w-100 mt-4">Login</button>
+          <p className="text-danger mt-4">{msg}</p>
         </form>
       </div>
     </div>

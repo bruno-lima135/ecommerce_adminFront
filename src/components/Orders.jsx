@@ -1,6 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 function Orders() {
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    async function getOrders() {
+      const response = await axios({
+        method: "GET",
+        url: `${import.meta.env.VITE_API_URL}/orders`,
+      });
+      setOrders(response.data);
+    }
+    getOrders();
+  }, []);
+
   return (
     <>
       <div>
@@ -12,7 +26,7 @@ function Orders() {
           <thead>
             <tr>
               <th>Id</th>
-              <th>User</th>
+              <th>Buyer</th>
               <th>Total price</th>
               <th>Status</th>
               <th></th>
@@ -20,12 +34,15 @@ function Orders() {
           </thead>
 
           <tbody>
-            <tr>
-              <th>Lorem ipsum dolor sit amet.</th>
-              <th>Lorem ipsum dolor sit amet.</th>
-              <th>Lorem ipsum dolor sit amet.</th>
-              <th>Lorem ipsum dolor sit amet.</th>
-            </tr>
+            {orders &&
+              orders.map((order) => (
+                <tr key={order.id}>
+                  <th>{order.id}</th>
+                  <th>{order.buyer}</th>
+                  <th>{order.totalPrice}</th>
+                  <th>{order.state}</th>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
