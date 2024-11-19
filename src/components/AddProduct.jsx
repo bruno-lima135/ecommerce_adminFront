@@ -2,8 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+
 
 function AddProduct() {
+  const userData = useSelector((state) => state.user);
+
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -30,6 +34,7 @@ function AddProduct() {
       method: "POST",
       url: `${import.meta.env.VITE_API_URL}/products/store`,
       data: { formData },
+      headers: { Authorization: `Bearer ${userData.token}` },
     });
   }
 
@@ -83,9 +88,7 @@ function AddProduct() {
             onChange={handleChange}
           >
             <option value="bars">Bars</option>
-            <option value="60ml">Shot</option>
-            <option value="330ml">330ml</option>
-            <option value="500ml">500ml</option>
+            <option value="juices">Juices</option>
           </select>
           <label htmlFor="outstanding">Outstanding</label>
           <select

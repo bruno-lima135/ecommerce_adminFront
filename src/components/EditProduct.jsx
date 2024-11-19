@@ -2,20 +2,25 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { ListGroup } from "react-bootstrap";
 
 function EditProduct() {
+  const userData = useSelector((state) => state.user);
   const [product, setProduct] = useState({});
   const params = useParams();
-
+  console.log(params.productSlug);
   useEffect(() => {
     async function getProduct() {
       const response = await axios({
         method: "GET",
         url: ` ${import.meta.env.VITE_API_URL}/products/show/${
-          params.productId
+          params.productSlug
         }`,
+        headers: { Authorization: `Bearer ${userData.token}` },
       });
-      setProduct(response.data);
+      console.log(response);
+      // setProduct(response.data);
     }
 
     getProduct();
@@ -32,6 +37,7 @@ function EditProduct() {
     slug: "",
     ingredients: [],
   });
+  console.log(product);
 
   async function handleChange(event) {
     const inputName = event.target.name;
@@ -48,6 +54,7 @@ function EditProduct() {
       method: "POST",
       url: `${import.meta.env.VITE_API_URL}/products/edit/${params.productId}`,
       data: { formData },
+      headers: { Authorization: `Bearer ${userData.token}` },
     });
   }
 
