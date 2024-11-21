@@ -40,10 +40,10 @@ function Login() {
   return (
     <div className="login-container d-flex justify-content-center align-items-center">
       <div className="form-login-container border p-5 shadow rounded ">
-        <h1>Login Admin</h1>
+        <h1>Iniciar sesión</h1>
         <form action="" onSubmit={(event) => handleLogin(event)}>
           <label htmlFor="email" className="">
-            email
+            Correo
           </label>
           <input
             className="form-control mt-2"
@@ -55,7 +55,7 @@ function Login() {
           />
 
           <label htmlFor="password" className="mt-2">
-            Password
+            Contraseña
           </label>
           <input
             className="form-control mt-2"
@@ -65,7 +65,7 @@ function Login() {
             value={password}
             onChange={(event) => handleChangePassword(event)}
           />
-          <button className="btn btn-success w-100 mt-4">Login</button>
+          <button className="btn btn-success w-100 mt-4">Ingresar</button>
           <p className="text-danger mt-4">{msg}</p>
         </form>
       </div>

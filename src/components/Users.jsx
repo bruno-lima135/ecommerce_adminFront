@@ -31,14 +31,11 @@ function Users() {
 
   return (
     <>
-      <div>
+      <div className="container container-users h-100">
         <div className="d-flex">
-          <h3 className="mt-3 mb-3">Users</h3>
-          <Link
-            className="ms-auto me-5 fs-5 mt-4 btn border"
-            to={"/users/addUser"}
-          >
-            Add User
+          <h1 className="mt-3 mb-3">Usuarios</h1>
+          <Link className="ms-auto fs-5 mt-4 " to={"/users/addUser"}>
+            <i class="bi bi-plus-circle fs-2 text-black"></i>
           </Link>
         </div>
 
@@ -46,10 +43,10 @@ function Users() {
           <thead>
             <tr>
               <th>Id</th>
-              <th>Firstname</th>
-              <th>Lastname</th>
-              <th>Email</th>
-              <th>Actions</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Correo</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -62,17 +59,14 @@ function Users() {
                   <th>{user.email}</th>
 
                   <th>
-                    <Link
-                      to={`/users/${user.id}`}
-                      className="btn btn-primary m-1"
-                    >
-                      Edit
+                    <Link to={`/users/${user.id}`} className="btn btn-primary">
+                      Editar
                     </Link>
                     <button
                       onClick={() => handleDestroy(user.id)}
-                      className=" btn btn-secondary "
+                      className=" ms-1 btn btn-secondary "
                     >
-                      Delete
+                      Eliminar
                     </button>
                   </th>
                 </tr>

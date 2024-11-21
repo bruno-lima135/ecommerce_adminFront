@@ -17,34 +17,39 @@ function Orders() {
 
   return (
     <>
-      <div>
-        <h1 className="d-flex justify-content-center mt-5 mb-5">Orders</h1>
-      </div>
+      <div className="container container-orders">
+        <h1 className="mt-2 mb-5">Ordenes</h1>
 
-      <div className="">
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Buyer</th>
-              <th>Total price</th>
-              <th>Status</th>
-              <th></th>
-            </tr>
-          </thead>
+        <div className="">
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Comprador</th>
+                <th>Precio total</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            {orders &&
-              orders.map((order) => (
-                <tr key={order.id}>
-                  <th>{order.id}</th>
-                  <th>{order.buyer}</th>
-                  <th>{order.totalPrice}</th>
-                  <th>{order.state}</th>
-                </tr>
-              ))}
-          </tbody>
-        </table>
+            <tbody>
+              {orders &&
+                orders.map((order) => (
+                  <tr key={order.id}>
+                    <th>{order.id}</th>
+                    <th>{order.buyer}</th>
+                    <th>$ {order.totalPrice}</th>
+                    <th>{order.state}</th>
+                    <th>
+                      <button className="btn btn-secondary">
+                        Editar estado
+                      </button>
+                    </th>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );

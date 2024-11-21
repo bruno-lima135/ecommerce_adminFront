@@ -32,44 +32,41 @@ function Products() {
 
   return (
     <>
-      <div className="d-flex">
-        <h1>Products</h1>
+      <div className="d-flex container">
+        <h1 className="mt-2">Productos</h1>
 
-        <Link
-          to={"/products/addProduct"}
-          className="ms-auto me-5 mt-5 btn border "
-        >
-          Add product
+        <Link to={"/products/addProduct"} className="ms-auto  mt-5 ">
+          <i class="bi bi-plus-circle fs-2 text-black"></i>
         </Link>
       </div>
-      <div>
-        <table className="table table-striped">
+      <div className="container">
+        <table className="table table-striped ">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Price</th>
+              <th>Nombre</th>
+              <th>Precio</th>
               <th>Stock</th>
-              <th></th>
+              <th>Acción</th>
             </tr>
           </thead>
           <tbody>
             {products.map((product) => (
               <tr key={product.id}>
                 <th>{product.name}</th>
-                <th>{product.price}</th>
+                <th>$ {product.price}</th>
                 <th>{product.stock}</th>
                 <th>
                   <Link
                     to={`/products/edit/${product.id}`}
-                    className="m-2 btn btn-primary"
+                    className=" btn btn-primary"
                   >
-                    Edit
+                    Editar
                   </Link>
                   <button
                     onClick={(event) => handleDestroy(product.id)}
-                    className=" btn btn-secondary"
+                    className="ms-1 btn btn-secondary"
                   >
-                    Delete
+                    Eliminar
                   </button>
                 </th>
               </tr>

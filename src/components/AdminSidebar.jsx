@@ -15,30 +15,34 @@ function AdminSidebar() {
 
   return (
     <>
-      <div className="d-flex flex-column  sidebar vh-100">
-        <div className="w-100 text-center mt-3">
+      <div className="d-flex flex-column  sidebar ">
+        <div className="text-center mt-3">
           {token.token ? (
-            <button onClick={handleLogout} className="btn-logout ">
-              LogOut
+            <button onClick={handleLogout} className="btn-logout text ">
+              Cerrar sesión
             </button>
           ) : (
-            <Link to={"/login"} className="btn bg-secondary w-50 text-white ">
-              Login
+            <Link
+              to={"/login"}
+              className="btn bg-secondary w-50 text-white text"
+            >
+              Iniciar sesión
             </Link>
           )}
         </div>
 
-        <Link to={"/"} className="m-2 sideName">
-          Dashboard
+        <Link to={"/"} className="mt-4 sideName title ">
+          <i class="bi bi-house"></i>
+          <span> Panel</span>
         </Link>
-        <Link to={"/products"} className="m-2 sideName">
-          Products
+        <Link to={"/products"} className=" sideName">
+          <i class="bi bi-archive"></i> Productos{" "}
         </Link>
-        <Link to={"/users"} className="m-2 sideName">
-          Users
+        <Link to={"/users"} className=" sideName">
+          <i class="bi bi-person"></i> Usuarios
         </Link>
-        <Link to={"/orders"} className="m-2 sideName">
-          Orders
+        <Link to={"/orders"} className=" sideName">
+          <i class="bi bi-cart-check"></i> Ordenes
         </Link>
       </div>
     </>

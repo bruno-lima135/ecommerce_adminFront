@@ -28,10 +28,10 @@ function AddUser() {
     <>
       <div className="d-flex justify-content-center mt-5">
         <div className="rounded shadow border p-5">
-          <h1>Add User Admin</h1>
+          <h1>Crear usuario</h1>
 
           <form action="" onSubmit={(event) => handleAddAdmin(event)}>
-            <label htmlFor="firstname">Firstname</label>
+            <label htmlFor="firstname">Nombre</label>
             <input
               className="form-control"
               type="text"
@@ -41,7 +41,7 @@ function AddUser() {
               onChange={(event) => setFirstName(event.target.value)}
             />
 
-            <label htmlFor="lastname">Lastname</label>
+            <label htmlFor="lastname">Apellido</label>
             <input
               className="form-control"
               type="text"
@@ -51,7 +51,7 @@ function AddUser() {
               onChange={(event) => setLastName(event.target.value)}
             />
 
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Correo</label>
             <input
               className="form-control"
               type="email"
@@ -61,7 +61,7 @@ function AddUser() {
               onChange={(event) => setEmail(event.target.value)}
               required
             />
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Contraseña</label>
             <input
               className="form-control"
               type="password"
@@ -72,10 +72,10 @@ function AddUser() {
               required
             />
 
-            <button className="btn btn-success mt-4 w-100">Create</button>
+            <button className="btn btn-success mt-4 w-100">Crear</button>
           </form>
           <Link to={"/users"} className="mt-4 btn  border">
-            Go back
+            <i class="bi bi-arrow-left fs-4"></i>
           </Link>
           <p className="text-success">{msg}</p>
         </div>

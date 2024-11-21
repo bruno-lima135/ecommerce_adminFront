@@ -44,10 +44,10 @@ function EditUser() {
     <>
       <div className="d-flex justify-content-center mt-5">
         <div className="shadow rounded border p-5">
-          <h1>Edit User Admin</h1>
+          <h1>Editar usuario</h1>
 
           <form action="" onSubmit={(event) => handleEditAdmin(event)}>
-            <label htmlFor="firstname">Firstname</label>
+            <label htmlFor="firstname">Nombre</label>
             <input
               className="form-control"
               type="text"
@@ -57,7 +57,7 @@ function EditUser() {
               onChange={(event) => setFirstName(event.target.value)}
             />
 
-            <label htmlFor="lastname">Lastname</label>
+            <label htmlFor="lastname">Apellido</label>
             <input
               className="form-control"
               type="text"
@@ -67,7 +67,7 @@ function EditUser() {
               onChange={(event) => setLastName(event.target.value)}
             />
 
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Correo</label>
             <input
               className="form-control"
               type="email"
@@ -76,7 +76,7 @@ function EditUser() {
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Contraseña</label>
             <input
               className="form-control"
               type="password"
@@ -86,10 +86,12 @@ function EditUser() {
               onChange={(event) => setPassword(event.target.value)}
             />
 
-            <button className="mt-4 w-100 btn btn-success">Save Changes</button>
+            <button className="mt-4 w-100 btn btn-success">
+              Guardar cambios
+            </button>
           </form>
           <Link to={"/users"} className="btn border mt-4">
-            Go back
+            <i class="bi bi-arrow-left fs-5"></i>
           </Link>
           <p className="text-success">{msg}</p>
         </div>
