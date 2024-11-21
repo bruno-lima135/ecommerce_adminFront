@@ -39,7 +39,7 @@ function Dashboard() {
                   <Card className="">
                     <Card.Body>
                       <div className="d-flex align-items-center">
-                        <i class="bi bi-bag fs-2"></i>
+                        <i className="bi bi-bag fs-2"></i>
                         <div className="ms-3">
                           <Card.Title>Ventas mensuales (USD)</Card.Title>
                           <Card.Text className="card-text ">450.980</Card.Text>
@@ -55,7 +55,7 @@ function Dashboard() {
                   <Card className="">
                     <Card.Body>
                       <div className="d-flex align-items-center">
-                        <i class="bi bi-envelope-open fs-2"></i>
+                        <i className="bi bi-envelope-open fs-2"></i>
                         <div className="ms-3">
                           <Card.Title>Ratio de conversión </Card.Title>
                           <Card.Text className="card-text">19.16%</Card.Text>

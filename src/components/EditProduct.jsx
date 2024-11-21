@@ -59,19 +59,20 @@ function EditProduct() {
       data: { formData },
       headers: { Authorization: `Bearer ${userData.token}` },
     });
+
     return navigate("/products");
   }
   return (
     <>
       <div className="d-flex justify-content-center mt-5 ">
         <div className=" border shadow rounded p-5">
-          <h1>Edit product</h1>
+          <h1>Editar producto</h1>
           <form
             action=""
             method="post"
             onSubmit={(event) => handleEditProduct(event)}
           >
-            <label htmlFor="name">name</label>
+            <label htmlFor="name">Nombre</label>
             <input
               className="form-control"
               onChange={handleChange}
@@ -81,7 +82,7 @@ function EditProduct() {
               value={formData.name}
             />
             <label htmlFor="name" className="mt-2">
-              Description
+              Descripción
             </label>
             <textarea
               onChange={handleChange}
@@ -91,11 +92,11 @@ function EditProduct() {
               value={formData.description}
             ></textarea>
             <label htmlFor="image" className="mt-3">
-              Image
+              Imagen
             </label>
             <input className="form-control" type="file" />
             <label htmlFor="price" className="mt-3">
-              Price
+              Precio
             </label>
             <input
               className="form-control"
@@ -106,7 +107,7 @@ function EditProduct() {
               value={formData.price}
             />
             <label htmlFor="stock" className="mt-2">
-              Stock
+              Existencias
             </label>
             <input
               className="form-control"
@@ -117,7 +118,7 @@ function EditProduct() {
               value={formData.stock}
             />
             <label htmlFor="category" className="mt-2">
-              Category
+              Categoria
             </label>
             <select
               className="form-control"
@@ -125,11 +126,11 @@ function EditProduct() {
               id="category"
               onChange={handleChange}
             >
-              <option value="bars">Bars</option>
-              <option value="juices">Juices</option>
+              <option value="bars">Barras</option>
+              <option value="juices">Jugos</option>
             </select>
             <label htmlFor="outstanding" className="mt-2">
-              Outstanding
+              Destacado
             </label>
             <select
               className="form-control"
@@ -137,8 +138,8 @@ function EditProduct() {
               id="outstanding"
               onChange={handleChange}
             >
-              <option value="true">True</option>
-              <option value="false">False</option>
+              <option value="true">Verdadero</option>
+              <option value="false">Falso</option>
             </select>
             <label htmlFor="slug" className="mt-2">
               Slug
@@ -152,10 +153,12 @@ function EditProduct() {
               value={formData.slug}
             />
 
-            <button className="mt-4 w-100 btn btn-success">Edit Product</button>
+            <button className="mt-4 w-100 btn btn-success">
+              Guardar cambios
+            </button>
           </form>
           <Link to="/products" className="mt-4 btn border">
-            Go back
+            <i class="bi bi-arrow-left fs-5"></i>
           </Link>
         </div>
       </div>

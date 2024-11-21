@@ -15,6 +15,7 @@ import AddUser from "./components/AddAdmin.jsx";
 import EditUser from "./components/EditAdmin.jsx";
 import Login from "./components/Login.jsx";
 import store from "./redux/storeConfig.js";
+import StateEdit from "./components/StateEdit.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
   },
   { path: "/login", element: <Login /> },
   { path: "/orders/:orderId", element: <Order /> },
+  { path: "/orders/edit/:orderId", element: <StateEdit /> },
   { path: "/products/edit/:productId", element: <EditProduct /> },
   { path: "/products/addProduct", element: <AddProduct /> },
   { path: "/users/addUser", element: <AddUser /> },

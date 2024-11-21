@@ -15,8 +15,28 @@ function AdminSidebar() {
 
   return (
     <>
-      <div className="d-flex flex-column  sidebar ">
-        <div className="text-center mt-3">
+      <div className="d-flex flex-column  sidebar  ">
+        <img
+          src="./images/vibracowhite.png"
+          className="w-75 d-flex ms-4 "
+          alt=""
+        />
+
+        <Link to={"/"} className="mt-4 sideName title ">
+          <i className="bi bi-house"></i>
+          <span> Panel</span>
+        </Link>
+        <Link to={"/products"} className=" sideName">
+          <i className="bi bi-archive"></i> Productos{" "}
+        </Link>
+        <Link to={"/users"} className=" sideName">
+          <i className="bi bi-person"></i> Usuarios
+        </Link>
+        <Link to={"/orders"} className=" sideName">
+          <i className="bi bi-cart-check"></i> Ordenes
+        </Link>
+
+        <div className="text-center ">
           {token.token ? (
             <button onClick={handleLogout} className="btn-logout text ">
               Cerrar sesión
@@ -30,20 +50,6 @@ function AdminSidebar() {
             </Link>
           )}
         </div>
-
-        <Link to={"/"} className="mt-4 sideName title ">
-          <i class="bi bi-house"></i>
-          <span> Panel</span>
-        </Link>
-        <Link to={"/products"} className=" sideName">
-          <i class="bi bi-archive"></i> Productos{" "}
-        </Link>
-        <Link to={"/users"} className=" sideName">
-          <i class="bi bi-person"></i> Usuarios
-        </Link>
-        <Link to={"/orders"} className=" sideName">
-          <i class="bi bi-cart-check"></i> Ordenes
-        </Link>
       </div>
     </>
   );
