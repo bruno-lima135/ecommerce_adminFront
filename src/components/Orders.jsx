@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Orders() {
   const [orders, setOrders] = useState([]);
   const [state, setState] = useState("");
   const [msg, setMsg] = useState("");
-  const [disabled, setDisabled] = useState(false);
   useEffect(() => {
     async function getOrders() {
       const response = await axios({
@@ -16,12 +15,13 @@ function Orders() {
       setOrders(response.data);
     }
     getOrders();
-  }, []);
+  }, [msg]);
 
   async function handleChangeState(event, order) {
     event.preventDefault();
     if (order.state === "Entregado") {
-      return setMsg("Estado entregado no puede modificarse");
+      setMsg("Estado entregado no puede modificarse");
+      return toast.error(msg);
     }
 
     const response = await axios({
@@ -31,6 +31,7 @@ function Orders() {
     });
 
     setMsg(response.data);
+    return toast.success(msg);
   }
 
   return (
@@ -80,7 +81,6 @@ function Orders() {
                           <button className="btn btn-success ms-5">
                             Guardar cambios
                           </button>
-                          <span className=" ms-2 ">{msg}</span>
                         </div>
                       </form>
                     </th>

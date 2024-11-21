@@ -31,7 +31,7 @@ function Users() {
     setUsersData(response.data);
   }
 
-  async function cleanInputs() {
+  function cleanInputs() {
     setFirstName("");
     setLastName("");
     setEmail("");
@@ -92,14 +92,14 @@ function Users() {
           <h1 className="mt-3 mb-3">Usuarios</h1>
 
           <Button
-            className="ms-auto"
+            className="ms-auto "
             variant=""
             onClick={() => {
               handleShow();
               cleanInputs();
             }}
           >
-            <i class="bi bi-plus-circle fs-2 text-black"></i>
+            <i class="bi bi-plus-circle fs-2 add-btn"></i>
           </Button>
         </div>
 
@@ -124,7 +124,8 @@ function Users() {
 
                   <th>
                     <Button
-                      variant="primary"
+                      className="btn btn-warning"
+                      variant=""
                       onClick={() => {
                         setShow2(true);
                         getAdmin(user.id);

@@ -16,6 +16,8 @@ import EditUser from "./components/EditAdmin.jsx";
 import Login from "./components/Login.jsx";
 import store from "./redux/storeConfig.js";
 import StateEdit from "./components/StateEdit.jsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   {
@@ -43,5 +45,6 @@ createRoot(document.getElementById("root")).render(
     <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>
+    <ToastContainer />
   </StrictMode>
 );

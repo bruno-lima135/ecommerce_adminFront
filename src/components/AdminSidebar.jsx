@@ -36,19 +36,21 @@ function AdminSidebar() {
           <i className="bi bi-cart-check"></i> Ordenes
         </Link>
 
-        <div className="text-center ">
-          {token.token ? (
-            <button onClick={handleLogout} className="btn-logout text ">
-              Cerrar sesión
-            </button>
-          ) : (
-            <Link
-              to={"/login"}
-              className="btn bg-secondary w-50 text-white text"
-            >
-              Iniciar sesión
-            </Link>
-          )}
+        <div className="btn-container">
+          <div className="btn-logout-login">
+            {token.token ? (
+              <button
+                onClick={handleLogout}
+                className="btn btn-log text-white text "
+              >
+                Cerrar sesión
+              </button>
+            ) : (
+              <Link to={"/login"} className="btn text-white text btn-log">
+                Iniciar sesión
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </>

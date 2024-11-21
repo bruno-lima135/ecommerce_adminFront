@@ -63,21 +63,24 @@ body {
   width: 500px;
 }
 
-.btn-logout {
-  border: 1px solid grey;
-  background-color: rgb(230, 235, 240);
-  width: 60%;
-
-  padding: 10px;
-  border-radius: 4px;
-  position: fixed;
-  bottom: 20px;
-  left: 30px;
-  width: 120px;
+.btn-log {
+  background-color: rgb(58, 60, 63);
+  border-radius: 5px;
+  width: 200px;
 }
 
-.btn-logout:hover {
-  background-color: whitesmoke;
+.btn-log:hover {
+  background-color: rgb(168, 162, 162);
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-logout-login {
+  position: fixed;
+  bottom: 30px;
 }
 
 .container-users {
@@ -86,4 +89,12 @@ body {
 
 .container-orders {
   min-height: 100vh;
+}
+
+.add-btn {
+  color: black;
+}
+
+.add-btn:hover {
+  color: grey;
 }
