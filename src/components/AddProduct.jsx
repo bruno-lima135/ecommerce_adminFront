@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 function AddProduct() {
   const userData = useSelector((state) => state.user);
   const [msg, setMsg] = useState("");
+  const [selectedItems, setSelectedItems] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -18,6 +19,18 @@ function AddProduct() {
     slug: "",
     ingredients: [],
   });
+
+  const handleCheckboxChange = (e) => {
+    const value = e.target.value;
+    if (e.target.checked) {
+      setSelectedItems([...selectedItems, value]);
+    } else {
+      setSelectedItems(selectedItems.filter((item) => item !== value));
+    }
+
+    setFormData({ ingredients: selectedItems });
+    console.log(formData);
+  };
 
   const handleChange = (event) => {
     const inputName = event.target.name;
@@ -143,6 +156,7 @@ function AddProduct() {
                       id="tomato"
                       name="tomato"
                       value="tomate"
+                      onChange={handleCheckboxChange}
                     />
                     <label htmlFor="tomato" className="form-check-label">
                       Tomate
@@ -156,6 +170,7 @@ function AddProduct() {
                       id=""
                       name="carrot"
                       value="zanahoria"
+                      onChange={handleCheckboxChange}
                     />
                     <label className="form-check-label" htmlFor="carrot">
                       Zanahoria
@@ -169,6 +184,7 @@ function AddProduct() {
                       id="apple"
                       name="apple"
                       value="manzana"
+                      onChange={handleCheckboxChange}
                     />
                     <label className="form-check-label" htmlFor="apple">
                       Manzana
@@ -181,6 +197,7 @@ function AddProduct() {
                       name="orange"
                       value="naranja"
                       className="form-check-input"
+                      onChange={handleCheckboxChange}
                     />
                     <label className="form-check-label" htmlFor="orange">
                       Naranja
@@ -190,7 +207,7 @@ function AddProduct() {
               </div>{" "}
             </form>
             <Link to="/products" className="mt-4 btn border">
-              <i class="bi bi-arrow-left fs-5"></i>
+              <i className="bi bi-arrow-left fs-5"></i>
             </Link>
           </div>
         </div>
