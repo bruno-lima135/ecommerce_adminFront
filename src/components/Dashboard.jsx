@@ -95,7 +95,6 @@ function Dashboard() {
                 <th>Comprador</th>
                 <th>Precio total</th>
                 <th>Estado</th>
-                <th>Acción</th>
               </tr>
             </thead>
             <tbody>
@@ -106,11 +105,6 @@ function Dashboard() {
                     <th>{order.buyer}</th>
                     <th>$ {order.totalPrice}</th>
                     <th>{order.state}</th>
-                    <th>
-                      <button className="btn border bg-secondary text-white">
-                        Cambiar estado
-                      </button>
-                    </th>
                   </tr>
                 ))}
             </tbody>
