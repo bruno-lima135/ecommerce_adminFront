@@ -7,6 +7,7 @@ function EditProduct() {
   const userData = useSelector((state) => state.user);
   const params = useParams();
   const navigate = useNavigate();
+  const [selectedItems, setSelectedItems] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -51,12 +52,21 @@ function EditProduct() {
     });
   }
 
+  const handleCheckboxChange = (e) => {
+    const value = e.target.value;
+    if (e.target.checked) {
+      setSelectedItems([...selectedItems, value]);
+    } else {
+      setSelectedItems(selectedItems.filter((item) => item !== value));
+    }
+  };
+
   async function handleEditProduct(event) {
     event.preventDefault();
     await axios({
       method: "POST",
       url: `${import.meta.env.VITE_API_URL}/products/edit/${params.productId}`,
-      data: { formData },
+      data: { formData, ingredients: selectedItems },
       headers: { Authorization: `Bearer ${userData.token}` },
     });
 
@@ -152,7 +162,61 @@ function EditProduct() {
               onChange={handleChange}
               value={formData.slug}
             />
+            <span className="mt-2">Ingredientes</span>
+            <div className="form-check mt-2">
+              <input
+                type="checkbox"
+                className="form-check-input"
+                id="tomato"
+                name="tomato"
+                value="tomate"
+                onChange={handleCheckboxChange}
+              />
+              <label htmlFor="tomato" className="form-check-label">
+                Tomate
+              </label>{" "}
+            </div>
 
+            <div className="form-check mt-2">
+              <input
+                type="checkbox"
+                className="form-check-input"
+                id=""
+                name="carrot"
+                value="zanahoria"
+                onChange={handleCheckboxChange}
+              />
+              <label className="form-check-label" htmlFor="carrot">
+                Zanahoria
+              </label>
+            </div>
+
+            <div className="form-check mt-2">
+              <input
+                type="checkbox"
+                className="form-check-input"
+                id="apple"
+                name="apple"
+                value="manzana"
+                onChange={handleCheckboxChange}
+              />
+              <label className="form-check-label" htmlFor="apple">
+                Manzana
+              </label>
+            </div>
+            <div className="form-check mt-2">
+              <input
+                type="checkbox"
+                id="orange"
+                name="orange"
+                value="naranja"
+                className="form-check-input"
+                onChange={handleCheckboxChange}
+              />
+              <label className="form-check-label" htmlFor="orange">
+                Naranja
+              </label>{" "}
+            </div>
             <button className="mt-4 w-100 btn btn-success">
               Guardar cambios
             </button>

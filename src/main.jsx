@@ -8,7 +8,6 @@ import Dashboard from "./components/Dashboard.jsx";
 import Users from "./components/Users.jsx";
 import Products from "./components/Products.jsx";
 import Orders from "./components/Orders.jsx";
-import Order from "./components/Order.jsx";
 import EditProduct from "./components/EditProduct.jsx";
 import AddProduct from "./components/AddProduct.jsx";
 import AddUser from "./components/AddAdmin.jsx";
@@ -32,7 +31,6 @@ const router = createBrowserRouter([
     ],
   },
   { path: "/login", element: <Login /> },
-  { path: "/orders/:orderId", element: <Order /> },
   { path: "/orders/edit/:orderId", element: <StateEdit /> },
   { path: "/products/edit/:productId", element: <EditProduct /> },
   { path: "/products/addProduct", element: <AddProduct /> },

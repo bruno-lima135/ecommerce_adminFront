@@ -16,11 +16,13 @@ function AdminSidebar() {
   return (
     <>
       <div className="d-flex flex-column  sidebar  ">
-        <img
-          src="./images/vibracowhite.png"
-          className="w-75 d-flex ms-4 "
-          alt=""
-        />
+        <Link to={`${import.meta.env.VITE_CUSTOMER_URL}`}>
+          <img
+            src="./images/vibracowhite.png"
+            className="w-75 d-flex ms-4 "
+            alt=""
+          />
+        </Link>
 
         <Link to={"/"} className="mt-4 sideName title ">
           <i className="bi bi-house"></i>

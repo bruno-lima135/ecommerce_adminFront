@@ -20,8 +20,7 @@ function Orders() {
   async function handleChangeState(event, order) {
     event.preventDefault();
     if (order.state === "Entregado") {
-      setMsg("Estado entregado no puede modificarse");
-      return toast.error(msg);
+      return toast.error("Estado entregado no puede modificarse");
     }
 
     const response = await axios({
@@ -30,8 +29,7 @@ function Orders() {
       data: { state },
     });
 
-    setMsg(response.data);
-    return toast.success(msg);
+    return toast.success("Estado cambiado");
   }
 
   return (

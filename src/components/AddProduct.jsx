@@ -17,7 +17,6 @@ function AddProduct() {
     category: "",
     outstanding: false,
     slug: "",
-    ingredients: [],
   });
 
   const handleCheckboxChange = (e) => {
@@ -27,9 +26,6 @@ function AddProduct() {
     } else {
       setSelectedItems(selectedItems.filter((item) => item !== value));
     }
-
-    setFormData({ ingredients: selectedItems });
-    console.log(formData);
   };
 
   const handleChange = (event) => {
@@ -45,13 +41,12 @@ function AddProduct() {
     const response = await axios({
       method: "POST",
       url: `${import.meta.env.VITE_API_URL}/products/store`,
-      data: { formData },
+      data: { formData, ingredients: selectedItems },
       headers: { Authorization: `Bearer ${userData.token}` },
     });
 
     return setMsg(response.data);
   }
-
   return (
     <>
       <div className="container mt-5">
@@ -122,6 +117,7 @@ function AddProduct() {
                     name="category"
                     id="category"
                     onChange={handleChange}
+                    defaultValue={"juices"}
                   >
                     <option value="bars">Barras</option>
                     <option value="juices">Jugos</option>

@@ -38,7 +38,7 @@ function Login() {
   }
 
   return (
-    <div className="login-container d-flex justify-content-center align-items-center">
+    <div className="mt-5 login-container d-flex justify-content-center align-items-center flex-column">
       <div className="form-login-container border p-5 shadow rounded ">
         <h1>Iniciar sesión</h1>
         <form action="" onSubmit={(event) => handleLogin(event)}>
@@ -68,6 +68,14 @@ function Login() {
           <button className="btn btn-success w-100 mt-4">Ingresar</button>
           <p className="text-danger mt-4">{msg}</p>
         </form>
+      </div>
+
+      <div className="mt-5">
+        <p className="fw-bold m-0">Iniciar sesión como administrador</p>
+        <ul className="list-credentials">
+          <li>E-mail: admin@a.com.</li>
+          <li>Contraseña: 1234.</li>
+        </ul>
       </div>
     </div>
   );
