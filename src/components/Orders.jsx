@@ -65,6 +65,9 @@ function Orders() {
                         <div className="d-flex align-items-center ">
                           <label htmlFor="state"></label>
                           <select
+                            disabled={
+                              order.state === "Entregado" ? true : false
+                            }
                             className="border-0 p-1 rounded"
                             name="state"
                             id="state"
@@ -76,7 +79,12 @@ function Orders() {
                             <option value="Entregado">Entregado</option>
                           </select>
 
-                          <button className="btn btn-success ms-5">
+                          <button
+                            disabled={
+                              order.state === "Entregado" ? true : false
+                            }
+                            className="btn btn-success ms-5"
+                          >
                             Guardar cambios
                           </button>
                         </div>
