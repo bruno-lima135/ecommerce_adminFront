@@ -8,6 +8,7 @@ function AddProduct() {
   const userData = useSelector((state) => state.user);
   const [msg, setMsg] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
+  const [image, setImage] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -84,7 +85,7 @@ function AddProduct() {
                     name="image"
                     className="form-control"
                     type="file"
-                    onChange={(event) => setFormData(e.target.files[0])}
+                    onChange={(event) => setImage(e.target.files[0])}
                   />{" "}
                   <label htmlFor="price" className="mt-2">
                     Precio
