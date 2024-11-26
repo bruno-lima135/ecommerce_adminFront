@@ -36,6 +36,7 @@ function AddProduct() {
     });
   };
 
+  // asldkasl
   async function handleAddProduct(event) {
     event.preventDefault();
     const { name, description, price, stock, category, outstanding, slug } =
