@@ -42,7 +42,10 @@ function AddProduct() {
       method: "POST",
       url: `${import.meta.env.VITE_API_URL}/products/store`,
       data: { formData, ingredients: selectedItems },
-      headers: { Authorization: `Bearer ${userData.token}` },
+      headers: {
+        Authorization: `Bearer ${userData.token}`,
+        "Content-Type": "multipart/form-data",
+      },
     });
 
     return setMsg(response.data);
@@ -77,7 +80,12 @@ function AddProduct() {
                   <label htmlFor="image" className="mt-3">
                     Imagen
                   </label>
-                  <input className="form-control" type="file" />{" "}
+                  <input
+                    name="image"
+                    className="form-control"
+                    type="file"
+                    onChange={(event) => setFormData(e.target.files[0])}
+                  />{" "}
                   <label htmlFor="price" className="mt-2">
                     Precio
                   </label>

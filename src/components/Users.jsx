@@ -114,35 +114,35 @@ function Users() {
             </tr>
           </thead>
           <tbody>
-            {usersData &&
-              usersData.map((user) => (
-                <tr key={user.id}>
-                  <th>{user.id}</th>
-                  <th>{user.firstname}</th>
-                  <th>{user.lastname}</th>
-                  <th>{user.email}</th>
+            {console.log(usersData)}
+            {usersData.map((user) => (
+              <tr key={user.id}>
+                <th>{user.id}</th>
+                <th>{user.firstname}</th>
+                <th>{user.lastname}</th>
+                <th>{user.email}</th>
 
-                  <th>
-                    <Button
-                      className="btn btn-warning"
-                      variant=""
-                      onClick={() => {
-                        setShow2(true);
-                        getAdmin(user.id);
-                      }}
-                    >
-                      Editar
-                    </Button>
+                <th>
+                  <Button
+                    className="btn btn-warning"
+                    variant=""
+                    onClick={() => {
+                      setShow2(true);
+                      getAdmin(user.id);
+                    }}
+                  >
+                    Editar
+                  </Button>
 
-                    <button
-                      onClick={() => handleDestroy(user.id)}
-                      className=" ms-1 btn btn-secondary "
-                    >
-                      Eliminar
-                    </button>
-                  </th>
-                </tr>
-              ))}
+                  <button
+                    onClick={() => handleDestroy(user.id)}
+                    className=" ms-1 btn btn-secondary "
+                  >
+                    Eliminar
+                  </button>
+                </th>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
