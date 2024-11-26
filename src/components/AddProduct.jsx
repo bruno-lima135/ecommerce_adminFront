@@ -12,7 +12,6 @@ function AddProduct() {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
-    image: "",
     price: Number,
     stock: Number,
     category: "",
@@ -39,10 +38,24 @@ function AddProduct() {
 
   async function handleAddProduct(event) {
     event.preventDefault();
+    const { name, description, price, stock, category, outstanding, slug } =
+      formData;
+
     const response = await axios({
       method: "POST",
       url: `${import.meta.env.VITE_API_URL}/products/store`,
-      data: { formData, ingredients: selectedItems },
+
+      data: {
+        name,
+        description,
+        price,
+        stock,
+        category,
+        outstanding,
+        slug,
+        ingredients: selectedItems,
+        image,
+      },
       headers: {
         Authorization: `Bearer ${userData.token}`,
         "Content-Type": "multipart/form-data",
