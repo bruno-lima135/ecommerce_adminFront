@@ -7,11 +7,11 @@ import { useSelector } from "react-redux";
 function AddProduct() {
   const userData = useSelector((state) => state.user);
   const [msg, setMsg] = useState("");
+  const [artImage, setArtImage] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
-    image: "",
     price: Number,
     stock: Number,
     category: "",
@@ -38,21 +38,46 @@ function AddProduct() {
 
   async function handleAddProduct(event) {
     event.preventDefault();
+
+    // const fData = new formData(event.target)
+
+    // for(let item of selectedItems){
+    //   fData.append("ingredients[]",item)
+    // }
+
+    const { name, description, price, stock, category, outstanding, slug } =
+      formData;
+
     const response = await axios({
       method: "POST",
       url: `${import.meta.env.VITE_API_URL}/products/store`,
-      data: { formData, ingredients: selectedItems },
-      headers: { Authorization: `Bearer ${userData.token}` },
+      data: {
+        name,
+        description,
+        price,
+        stock,
+        category,
+        outstanding,
+        slug,
+        ingredients: selectedItems.toString(),
+        artImage,
+      },
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${userData.token}`,
+      },
     });
 
     return setMsg(response.data);
   }
+
+  console.log(selectedItems);
   return (
     <>
       <div className="container mt-5">
         <div className="d-flex justify-content-center  ">
           <div className="border p-4 rounded shadow">
-            <form method="post" onSubmit={(event) => handleAddProduct(event)}>
+            <form onSubmit={(event) => handleAddProduct(event)}>
               <h1 className="text-center">Añadir producto</h1>
               <div className="mt-5 d-flex">
                 <div>
@@ -77,7 +102,14 @@ function AddProduct() {
                   <label htmlFor="image" className="mt-3">
                     Imagen
                   </label>
-                  <input className="form-control" type="file" />{" "}
+                  <input
+                    type="file"
+                    name="image"
+                    multiple
+                    onChange={(e) => setArtImage(e.target.files[0])}
+                    className="form-control"
+                  />
+
                   <label htmlFor="price" className="mt-2">
                     Precio
                   </label>
