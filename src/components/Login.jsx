@@ -19,7 +19,6 @@ function Login() {
       url: `${import.meta.env.VITE_API_URL}/tokens/admin`,
       data: { email, password },
     });
-    console.log(response.data);
     if (!response.data.token) return setMsg(response.data);
 
     dispatch(
