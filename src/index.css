@@ -24,7 +24,6 @@ body {
   background-color: rgb(12, 12, 12);
   margin-right: 10px;
   height: 100vh;
-  
 }
 
 .sideName:hover {
@@ -51,17 +50,23 @@ body {
 }
 
 .login-container {
-  min-height: 60vh;
+  min-height: 100vh;
+
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("https://tfistefyeywtnpgklclp.supabase.co/storage/v1/object/public/images/vibraco-card02.jpg");
+  background-position: unset;
 }
 
 .form-login-container {
   width: 500px;
+  background-color: rgba(60, 54, 65, 0.244);
+  color: white;
 }
 
 .btn-log {
   background-color: rgb(58, 60, 63);
   border-radius: 5px;
-  
+
   border: 1px solid white;
 }
 
@@ -98,4 +103,9 @@ body {
 .prodTable {
   display: flex;
   flex-wrap: wrap; /* Permite que los elementos se ajusten */
+}
+
+.btnLogin{
+  background-color: rgb(255, 127, 23);
+  color: white;
 }
