@@ -15,7 +15,7 @@ function AdminSidebar() {
 
   return (
     <>
-      <div className="d-flex flex-column  sidebar align-items-center">
+      <div className="d-flex flex-column sidebar align-items-center">
         <Link to={`${import.meta.env.VITE_CUSTOMER_URL}`}>
           <img
             src="./images/vibracowhite.png"
@@ -23,8 +23,7 @@ function AdminSidebar() {
             alt=""
           />
         </Link>
-<div className="links d-column ">
-  
+        <div className="links d-column ">
           <Link to={"/"} className="mt-4 sideName title d-block">
             <i className="bi bi-house"></i>
             <span> Panel</span>
@@ -38,7 +37,7 @@ function AdminSidebar() {
           <Link to={"/orders"} className=" sideName d-block">
             <i className="bi bi-cart-check"></i> Ordenes
           </Link>
-</div>
+        </div>
 
         <div className="btn-container">
           <div className="btn-logout-login">
