@@ -10,7 +10,7 @@ function Dashboard() {
 
   const token = useSelector((state) => state.user);
 
-  if (!token.token) navigate("/login");
+  // if (!token.token) navigate("/login");
 
   useEffect(() => {
     async function getOrders() {
