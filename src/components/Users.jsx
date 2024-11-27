@@ -37,6 +37,7 @@ function Users() {
     setEmail("");
     setPassword("");
   }
+
   useEffect(() => {
     async function getUsers() {
       const response = await axios({
@@ -73,7 +74,8 @@ function Users() {
       data: { Id, firstname, lastname, email, password },
       headers: { Authorization: `Bearer ${token.token}` },
     });
-    return setUsersData(response.data);
+    console.log(response.data);
+    setUsersData(response.data);
   }
 
   async function handleDestroy(adminId) {
@@ -85,6 +87,7 @@ function Users() {
     setUsersData(response.data);
   }
 
+  console.log(usersData);
   return (
     <>
       <div className="container container-users h-100">
@@ -114,7 +117,6 @@ function Users() {
             </tr>
           </thead>
           <tbody>
-            {console.log(usersData)}
             {usersData.map((user) => (
               <tr key={user.id}>
                 <th>{user.id}</th>
