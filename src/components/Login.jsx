@@ -37,9 +37,9 @@ function Login() {
   }
 
   return (
-    <div className="mt-5 login-container d-flex justify-content-center align-items-center flex-column">
-      <div className="form-login-container border p-5 shadow rounded ">
-        <h1>Iniciar sesión</h1>
+    <div className=" login-container d-flex justify-content-center align-items-center flex-column">
+      <div className="form-login-container border p-5 mt-5 shadow rounded text-white ">
+        <h1 >Iniciar sesión</h1>
         <form action="" onSubmit={(event) => handleLogin(event)}>
           <label htmlFor="email" className="">
             Correo
@@ -64,18 +64,19 @@ function Login() {
             value={password}
             onChange={(event) => handleChangePassword(event)}
           />
-          <button className="btn btn-success w-100 mt-4">Ingresar</button>
+          <button className="btn btnLogin w-100 mt-4">Ingresar</button>
           <p className="text-danger mt-4">{msg}</p>
         </form>
-      </div>
-
-      <div className="mt-5">
+        <div className="mt-5 text-white text-center">
         <p className="fw-bold m-0">Iniciar sesión como administrador</p>
         <ul className="list-credentials">
-          <li>E-mail: admin@a.com.</li>
-          <li>Contraseña: 1234.</li>
+          <li className="list-unstyled">E-mail: admin@a.com.</li>
+          <li className="list-unstyled">Contraseña: 1234.</li>
         </ul>
       </div>
+      </div>
+
+    
     </div>
   );
 }

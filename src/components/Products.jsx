@@ -39,6 +39,7 @@ function Products() {
           <i class="bi bi-plus-circle fs-2 add-btn"></i>
         </Link>
       </div>
+
       <div className="container">
         <table className="table table-striped  table-bordered">
           <thead>
@@ -69,10 +70,34 @@ function Products() {
                     Eliminar
                   </button>
                 </th>
+
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product.id}>
+                  <th>{product.name}</th>
+                  <th>$ {product.price}</th>
+                  <th>{product.stock}</th>
+                  <th>
+                    <Link
+                      to={`/products/edit/${product.id}`}
+                      className=" btn bg-warning"
+                    >
+                      Editar
+                    </Link>
+                    <button
+                      onClick={(event) => handleDestroy(product.id)}
+                      className="ms-1 btn btn-secondary"
+                    >
+                      Eliminar
+                    </button>
+                  </th>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );

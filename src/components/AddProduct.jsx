@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 function AddProduct() {
   const userData = useSelector((state) => state.user);
   const [msg, setMsg] = useState("");
+  const [artImage, setArtImage] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
   const [image, setImage] = useState({});
   const [formData, setFormData] = useState({
@@ -38,6 +39,7 @@ function AddProduct() {
 
   async function handleAddProduct(event) {
     event.preventDefault();
+
     const { name, description, price, stock, category, outstanding, slug } =
       formData;
     const fData = new FormData();
@@ -51,25 +53,40 @@ function AddProduct() {
     fData.append("ingredients", selectedItems);
     fData.append("image", image);
 
+
+    // const fData = new formData(event.target)
+
+    // for(let item of selectedItems){
+    //   fData.append("ingredients[]",item)
+    // }
+
+    const { name, description, price, stock, category, outstanding, slug } =
+      formData;
+
+
     const response = await axios({
       method: "POST",
       url: `${import.meta.env.VITE_API_URL}/products/store`,
+
 
       data: fData,
       headers: {
         Authorization: `Bearer ${userData.token}`,
         "Content-Type": "multipart/form-data",
+
       },
     });
 
     return setMsg(response.data);
   }
+
+  console.log(selectedItems);
   return (
     <>
       <div className="container mt-5">
         <div className="d-flex justify-content-center  ">
           <div className="border p-4 rounded shadow">
-            <form method="post" onSubmit={(event) => handleAddProduct(event)}>
+            <form onSubmit={(event) => handleAddProduct(event)}>
               <h1 className="text-center">Añadir producto</h1>
               <div className="mt-5 d-flex">
                 <div>
@@ -95,11 +112,13 @@ function AddProduct() {
                     Imagen
                   </label>
                   <input
+
                     name="image"
                     className="form-control"
                     type="file"
                     onChange={(event) => setImage(event.target.files[0])}
                   />{" "}
+
                   <label htmlFor="price" className="mt-2">
                     Precio
                   </label>

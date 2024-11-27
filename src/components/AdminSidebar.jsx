@@ -15,7 +15,7 @@ function AdminSidebar() {
 
   return (
     <>
-      <div className="d-flex flex-column  sidebar  ">
+      <div className="d-flex flex-column  sidebar align-items-center">
         <Link to={`${import.meta.env.VITE_CUSTOMER_URL}`}>
           <img
             src="./images/vibracowhite.png"
@@ -23,20 +23,22 @@ function AdminSidebar() {
             alt=""
           />
         </Link>
-
-        <Link to={"/"} className="mt-4 sideName title ">
-          <i className="bi bi-house"></i>
-          <span> Panel</span>
-        </Link>
-        <Link to={"/products"} className=" sideName">
-          <i className="bi bi-archive"></i> Productos{" "}
-        </Link>
-        <Link to={"/users"} className=" sideName">
-          <i className="bi bi-person"></i> Usuarios
-        </Link>
-        <Link to={"/orders"} className=" sideName">
-          <i className="bi bi-cart-check"></i> Ordenes
-        </Link>
+<div className="links d-column ">
+  
+          <Link to={"/"} className="mt-4 sideName title d-block">
+            <i className="bi bi-house"></i>
+            <span> Panel</span>
+          </Link>
+          <Link to={"/products"} className=" sideName d-block">
+            <i className="bi bi-archive"></i> Productos{" "}
+          </Link>
+          <Link to={"/users"} className=" sideName d-block">
+            <i className="bi bi-person"></i> Usuarios
+          </Link>
+          <Link to={"/orders"} className=" sideName d-block">
+            <i className="bi bi-cart-check"></i> Ordenes
+          </Link>
+</div>
 
         <div className="btn-container">
           <div className="btn-logout-login">

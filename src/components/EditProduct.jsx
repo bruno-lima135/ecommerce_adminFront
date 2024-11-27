@@ -78,6 +78,7 @@ function EditProduct() {
         <div className=" border shadow rounded p-5">
           <h1>Editar producto</h1>
           <form
+            encType="multipart/form-data"
             action=""
             method="post"
             onSubmit={(event) => handleEditProduct(event)}
