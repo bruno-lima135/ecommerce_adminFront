@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 function Dashboard() {
   const [orders, setOrders] = useState([]);
+  const navigate = useNavigate();
+
+  const token = useSelector((state) => state.user);
+
+  if (!token.token) navigate("/login");
 
   useEffect(() => {
     async function getOrders() {

@@ -21,7 +21,7 @@ import "react-toastify/dist/ReactToastify.css";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Login />,
+    element: <App />,
 
     children: [
       { path: "/", element: <Dashboard /> },
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       { path: "/Orders", element: <Orders /> },
     ],
   },
-  { path: "/login", element: <Login /> },
+  { path: "/", element: <Login /> },
   { path: "/orders/edit/:orderId", element: <StateEdit /> },
   { path: "/products/edit/:productId", element: <EditProduct /> },
   { path: "/products/addProduct", element: <AddProduct /> },
