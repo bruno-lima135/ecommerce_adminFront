@@ -8,7 +8,7 @@ function AddProduct() {
   const userData = useSelector((state) => state.user);
   const [msg, setMsg] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState({});
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -36,27 +36,26 @@ function AddProduct() {
     });
   };
 
-  // asldkasl
   async function handleAddProduct(event) {
     event.preventDefault();
     const { name, description, price, stock, category, outstanding, slug } =
       formData;
+    const fData = new FormData();
+    fData.append("name", name);
+    fData.append("description", description);
+    fData.append("price", price);
+    fData.append("stock", stock);
+    fData.append("category", category);
+    fData.append("outstanding", outstanding);
+    fData.append("slug", slug);
+    fData.append("ingredients", selectedItems);
+    fData.append("image", image);
 
     const response = await axios({
       method: "POST",
       url: `${import.meta.env.VITE_API_URL}/products/store`,
 
-      data: {
-        name,
-        description,
-        price,
-        stock,
-        category,
-        outstanding,
-        slug,
-        ingredients: selectedItems,
-        image,
-      },
+      data: fData,
       headers: {
         Authorization: `Bearer ${userData.token}`,
         "Content-Type": "multipart/form-data",
@@ -99,7 +98,7 @@ function AddProduct() {
                     name="image"
                     className="form-control"
                     type="file"
-                    onChange={(event) => setImage(e.target.files[0])}
+                    onChange={(event) => setImage(event.target.files[0])}
                   />{" "}
                   <label htmlFor="price" className="mt-2">
                     Precio
