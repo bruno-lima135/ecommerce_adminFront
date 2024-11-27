@@ -6,6 +6,7 @@ import Modal from "react-bootstrap/Modal";
 
 function Users() {
   const [usersData, setUsersData] = useState([]);
+  const [refresh, setRefresh] = useState(false);
   const token = useSelector((state) => state.user);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -49,7 +50,7 @@ function Users() {
     }
 
     getUsers();
-  }, []);
+  }, [refresh]);
 
   async function getAdmin(adminId) {
     const response = await axios({
@@ -75,7 +76,7 @@ function Users() {
       headers: { Authorization: `Bearer ${token.token}` },
     });
 
-    setUsersData(response.data);
+    setRefresh(!refresh);
   }
 
   async function handleDestroy(adminId) {
