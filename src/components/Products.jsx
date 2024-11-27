@@ -39,7 +39,7 @@ function Products() {
           <i class="bi bi-plus-circle fs-2 add-btn"></i>
         </Link>
       </div>
-      <div className="container">
+      <div className="container prodTable">
         <div className="table-responsive">
           <table className="table table-striped">
             <thead>

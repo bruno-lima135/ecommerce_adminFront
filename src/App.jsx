@@ -10,12 +10,12 @@ import { Outlet } from "react-router-dom";
 function App() {
   return (
     <>
-      <div className="row g-0">
-        <div className="col-2">
+      <div className="row">
+        <div className="col-md-2">
           <AdminSidebar />
         </div>
 
-        <div className="col-10">
+        <div className="col-md-10">
           <Outlet />
         </div>
       </div>
