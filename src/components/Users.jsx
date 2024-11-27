@@ -105,7 +105,7 @@ function Users() {
           </Button>
         </div>
 
-        <table className="table table-striped ">
+        <table className="table table-striped table-bordered ">
           <thead>
             <tr>
               <th>Id</th>

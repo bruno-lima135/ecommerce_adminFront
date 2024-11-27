@@ -39,9 +39,9 @@ function Orders() {
       <div className="container container-orders">
         <h1 className="mt-2 mb-5">Ordenes</h1>
 
-        <div className="container">
+        <div className="container" style={{ overflowX: `auto` }}>
           <div className="table-responsive">
-            <table className="table table-striped ">
+            <table className="table table-bordered table-striped  ">
               <thead>
                 <tr>
                   <th>Id</th>

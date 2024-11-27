@@ -40,7 +40,7 @@ function Products() {
         </Link>
       </div>
       <div className="container">
-        <table className="table table-striped ">
+        <table className="table table-striped  table-bordered">
           <thead>
             <tr>
               <th>Nombre</th>
