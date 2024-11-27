@@ -40,39 +40,41 @@ function Products() {
         </Link>
       </div>
       <div className="container">
-        <table className="table table-striped ">
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Precio</th>
-              <th>Stock</th>
-              <th>Acción</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <tr key={product.id}>
-                <th>{product.name}</th>
-                <th>$ {product.price}</th>
-                <th>{product.stock}</th>
-                <th>
-                  <Link
-                    to={`/products/edit/${product.id}`}
-                    className=" btn bg-warning"
-                  >
-                    Editar
-                  </Link>
-                  <button
-                    onClick={(event) => handleDestroy(product.id)}
-                    className="ms-1 btn btn-secondary"
-                  >
-                    Eliminar
-                  </button>
-                </th>
+        <div className="table-responsive">
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Acción</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product.id}>
+                  <th>{product.name}</th>
+                  <th>$ {product.price}</th>
+                  <th>{product.stock}</th>
+                  <th>
+                    <Link
+                      to={`/products/edit/${product.id}`}
+                      className=" btn bg-warning"
+                    >
+                      Editar
+                    </Link>
+                    <button
+                      onClick={(event) => handleDestroy(product.id)}
+                      className="ms-1 btn btn-secondary"
+                    >
+                      Eliminar
+                    </button>
+                  </th>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );
