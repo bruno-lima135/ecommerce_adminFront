@@ -16,7 +16,7 @@ function Users() {
   const [lastname, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [Id, setId] = useState(0);
+  const [Id, setId] = useState(5);
 
   async function handleAddAdmin(event) {
     event.preventDefault();
@@ -54,7 +54,7 @@ function Users() {
   async function getAdmin(adminId) {
     const response = await axios({
       method: "GET",
-      url: `${import.meta.env.VITE_API_URL}/admins/show/${adminId}}`,
+      url: `${import.meta.env.VITE_API_URL}/admins/show/${adminId}`,
       headers: { Authorization: `Bearer ${token.token}` },
     });
 
@@ -74,7 +74,7 @@ function Users() {
       data: { Id, firstname, lastname, email, password },
       headers: { Authorization: `Bearer ${token.token}` },
     });
-    console.log(response.data);
+
     setUsersData(response.data);
   }
 
@@ -87,7 +87,6 @@ function Users() {
     setUsersData(response.data);
   }
 
-  console.log(usersData);
   return (
     <>
       <div className="container container-users h-100">
