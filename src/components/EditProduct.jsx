@@ -163,8 +163,9 @@ function EditProduct() {
               onChange={handleChange}
               value={formData.slug}
             />
+
             <div className="form-check mt-2">
-              <span className="mt-2">Ingredientes</span>
+              <label htmlFor="ingredients " className="mt-2"></label>
               <input
                 type="checkbox"
                 className="form-check-input"
