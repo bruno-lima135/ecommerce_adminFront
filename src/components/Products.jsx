@@ -54,8 +54,8 @@ function Products() {
           <tbody>
             {products.map((product) => (
               <tr key={product.id} className="fw-normal">
-                <th>{product.name}</th>
-                <th>$U {product.price}</th>
+                <th className="fw-normal">{product.name}</th>
+                <th className="fw-normal">$U {product.price}</th>
                 <th>{product.stock}</th>
                 <th>
                   <Link
