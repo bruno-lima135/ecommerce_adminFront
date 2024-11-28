@@ -41,7 +41,7 @@ function Products() {
       </div>
 
       <div className="container">
-        <table className="">
+        <table className="table table-striped table-bordered">
           <thead>
             <tr>
               <th>Nombre</th>
@@ -53,9 +53,9 @@ function Products() {
 
           <tbody>
             {products.map((product) => (
-              <tr key={product.id}>
+              <tr key={product.id} className="fw-normal">
                 <th>{product.name}</th>
-                <th>$ {product.price}</th>
+                <th>$U {product.price}</th>
                 <th>{product.stock}</th>
                 <th>
                   <Link
