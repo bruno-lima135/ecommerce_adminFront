@@ -46,6 +46,7 @@ function Orders() {
                 <tr>
                   <th>Id</th>
                   <th>Comprador</th>
+                  <th>Nombre y apellido</th>
                   <th>Precio total</th>
                   <th>Estado</th>
                   <th>Acciones</th>
@@ -58,6 +59,7 @@ function Orders() {
                     <tr key={order.id}>
                       <th className="fw-normal">{order.id}</th>
                       <th className="fw-normal">{order.buyer}</th>
+                      <th className="fw-normal">$ {order.buyerName}</th>
                       <th className="fw-normal">$ {order.totalPrice}</th>
                       <th className="fw-normal">{order.state}</th>
                       <th>
