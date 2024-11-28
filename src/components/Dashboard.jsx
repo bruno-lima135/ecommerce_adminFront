@@ -94,7 +94,7 @@ function Dashboard() {
           <h5 className="d-flex justify-content-center m-4">
             Últimas 10 órdenes
           </h5>
-          <table className="table table-striped ">
+          <table className="table ">
             <thead>
               <tr>
                 <th>Id</th>

@@ -35,7 +35,7 @@ function AdminSidebar() {
             <i className="bi bi-person"></i> Usuarios
           </Link>
           <Link to={"/orders"} className=" sideName d-block">
-            <i className="bi bi-cart-check"></i> Ordenes
+            <i className="bi bi-cart-check"></i> Órdenes
           </Link>
         </div>
 
