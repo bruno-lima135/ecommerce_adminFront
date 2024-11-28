@@ -12,7 +12,7 @@ function Products() {
     async function getProducts() {
       const response = await axios({
         method: "GET",
-        url: "http://localhost:3003/products/juices",
+        url: `${import.meta.env.VITE_API_URL}/products/juices`,
         headers: { Authorization: `Bearer ${userData.token}` },
       });
 
@@ -39,42 +39,42 @@ function Products() {
           <i class="bi bi-plus-circle fs-2 add-btn"></i>
         </Link>
       </div>
-      <div className="container prodTable">
-        <div className="table-responsive">
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>Stock</th>
-                <th>Acción</th>
+
+      <div className="container">
+        <table className="table table-striped  table-bordered">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {products.map((product) => (
+              <tr key={product.id}>
+                <th>{product.name}</th>
+                <th>$ {product.price}</th>
+                <th>{product.stock}</th>
+                <th>
+                  <Link
+                    to={`/products/edit/${product.id}`}
+                    className=" btn bg-warning"
+                  >
+                    Editar
+                  </Link>
+                  <button
+                    onClick={(event) => handleDestroy(product.id)}
+                    className="ms-1 btn btn-secondary"
+                  >
+                    Eliminar
+                  </button>
+                </th>
               </tr>
-            </thead>
-            <tbody>
-              {products.map((product) => (
-                <tr key={product.id}>
-                  <th>{product.name}</th>
-                  <th>$ {product.price}</th>
-                  <th>{product.stock}</th>
-                  <th>
-                    <Link
-                      to={`/products/edit/${product.id}`}
-                      className=" btn bg-warning"
-                    >
-                      Editar
-                    </Link>
-                    <button
-                      onClick={(event) => handleDestroy(product.id)}
-                      className="ms-1 btn btn-secondary"
-                    >
-                      Eliminar
-                    </button>
-                  </th>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );

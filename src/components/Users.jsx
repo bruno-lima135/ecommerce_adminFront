@@ -6,6 +6,7 @@ import Modal from "react-bootstrap/Modal";
 
 function Users() {
   const [usersData, setUsersData] = useState([]);
+  const [refresh, setRefresh] = useState(false);
   const token = useSelector((state) => state.user);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -16,7 +17,7 @@ function Users() {
   const [lastname, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [Id, setId] = useState(0);
+  const [Id, setId] = useState(5);
 
   async function handleAddAdmin(event) {
     event.preventDefault();
@@ -37,6 +38,7 @@ function Users() {
     setEmail("");
     setPassword("");
   }
+
   useEffect(() => {
     async function getUsers() {
       const response = await axios({
@@ -48,12 +50,12 @@ function Users() {
     }
 
     getUsers();
-  }, []);
+  }, [refresh]);
 
   async function getAdmin(adminId) {
     const response = await axios({
       method: "GET",
-      url: `${import.meta.env.VITE_API_URL}/admins/show/${adminId}}`,
+      url: `${import.meta.env.VITE_API_URL}/admins/show/${adminId}`,
       headers: { Authorization: `Bearer ${token.token}` },
     });
 
@@ -73,7 +75,8 @@ function Users() {
       data: { Id, firstname, lastname, email, password },
       headers: { Authorization: `Bearer ${token.token}` },
     });
-    return setUsersData(response.data);
+
+    setRefresh(!refresh);
   }
 
   async function handleDestroy(adminId) {
@@ -103,7 +106,7 @@ function Users() {
           </Button>
         </div>
 
-        <table className="table table-striped ">
+        <table className="table table-striped table-bordered ">
           <thead>
             <tr>
               <th>Id</th>
@@ -114,35 +117,34 @@ function Users() {
             </tr>
           </thead>
           <tbody>
-            {usersData &&
-              usersData.map((user) => (
-                <tr key={user.id}>
-                  <th>{user.id}</th>
-                  <th>{user.firstname}</th>
-                  <th>{user.lastname}</th>
-                  <th>{user.email}</th>
+            {usersData.map((user) => (
+              <tr key={user.id}>
+                <th>{user.id}</th>
+                <th>{user.firstname}</th>
+                <th>{user.lastname}</th>
+                <th>{user.email}</th>
 
-                  <th>
-                    <Button
-                      className="btn btn-warning"
-                      variant=""
-                      onClick={() => {
-                        setShow2(true);
-                        getAdmin(user.id);
-                      }}
-                    >
-                      Editar
-                    </Button>
+                <th>
+                  <Button
+                    className="btn btn-warning"
+                    variant=""
+                    onClick={() => {
+                      setShow2(true);
+                      getAdmin(user.id);
+                    }}
+                  >
+                    Editar
+                  </Button>
 
-                    <button
-                      onClick={() => handleDestroy(user.id)}
-                      className=" ms-1 btn btn-secondary "
-                    >
-                      Eliminar
-                    </button>
-                  </th>
-                </tr>
-              ))}
+                  <button
+                    onClick={() => handleDestroy(user.id)}
+                    className=" ms-1 btn btn-secondary "
+                  >
+                    Eliminar
+                  </button>
+                </th>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

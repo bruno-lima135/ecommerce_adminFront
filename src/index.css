@@ -23,7 +23,7 @@ body {
 .sidebar {
   background-color: rgb(12, 12, 12);
   margin-right: 10px;
-  height: 100vh;
+  min-height: 100%;
 }
 
 .sideName:hover {
@@ -105,7 +105,7 @@ body {
   flex-wrap: wrap; /* Permite que los elementos se ajusten */
 }
 
-.btnLogin{
+.btnLogin {
   background-color: rgb(255, 127, 23);
   color: white;
 }

@@ -9,6 +9,7 @@ function AddProduct() {
   const [msg, setMsg] = useState("");
   const [artImage, setArtImage] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
+  const [image, setImage] = useState({});
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -39,32 +40,27 @@ function AddProduct() {
   async function handleAddProduct(event) {
     event.preventDefault();
 
-    // const fData = new formData(event.target)
-
-    // for(let item of selectedItems){
-    //   fData.append("ingredients[]",item)
-    // }
-
     const { name, description, price, stock, category, outstanding, slug } =
       formData;
+    const fData = new FormData();
+    fData.append("name", name);
+    fData.append("description", description);
+    fData.append("price", price);
+    fData.append("stock", stock);
+    fData.append("category", category);
+    fData.append("outstanding", outstanding);
+    fData.append("slug", slug);
+    fData.append("ingredients", selectedItems);
+    fData.append("image", image);
 
     const response = await axios({
       method: "POST",
       url: `${import.meta.env.VITE_API_URL}/products/store`,
-      data: {
-        name,
-        description,
-        price,
-        stock,
-        category,
-        outstanding,
-        slug,
-        ingredients: selectedItems.toString(),
-        artImage,
-      },
+
+      data: fData,
       headers: {
-        "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${userData.token}`,
+        "Content-Type": "multipart/form-data",
       },
     });
 
@@ -103,13 +99,11 @@ function AddProduct() {
                     Imagen
                   </label>
                   <input
-                    type="file"
                     name="image"
-                    multiple
-                    onChange={(e) => setArtImage(e.target.files[0])}
                     className="form-control"
-                  />
-
+                    type="file"
+                    onChange={(event) => setImage(event.target.files[0])}
+                  />{" "}
                   <label htmlFor="price" className="mt-2">
                     Precio
                   </label>
