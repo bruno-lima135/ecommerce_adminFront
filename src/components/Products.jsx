@@ -35,7 +35,7 @@ function Products() {
       <div className="d-flex container">
         <h1 className="mt-2">Productos</h1>
 
-        <Link to={"/products/addProduct"} className="ms-auto mt-5 ">
+        <Link to={"/productos/añadirProducto"} className="ms-auto mt-5 ">
           <i class="bi bi-plus-circle fs-2 add-btn"></i>
         </Link>
       </div>
@@ -58,7 +58,10 @@ function Products() {
                 <th className="fw-normal">$U {product.price}</th>
                 <th className="fw-normal">{product.stock}</th>
                 <th>
-                  <Link to={`/products/edit/${product.id}`} className=" btn ">
+                  <Link
+                    to={`/productos/editar/${product.id}`}
+                    className=" btn "
+                  >
                     <i class="bi bi-pencil-square text-primary bg-transparent"></i>
                   </Link>
                   <button

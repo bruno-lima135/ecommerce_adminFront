@@ -10,7 +10,7 @@ function AdminSidebar() {
 
   async function handleLogout() {
     dispatch(logOut());
-    navigate("/login");
+    navigate("/registrarse");
   }
 
   return (
@@ -28,13 +28,13 @@ function AdminSidebar() {
             <i className="bi bi-house"></i>
             <span> Panel</span>
           </Link>
-          <Link to={"/products"} className=" sideName d-block">
+          <Link to={"/productos"} className=" sideName d-block">
             <i className="bi bi-archive"></i> Productos{" "}
           </Link>
-          <Link to={"/users"} className=" sideName d-block">
+          <Link to={"/usuarios"} className=" sideName d-block">
             <i className="bi bi-person"></i> Usuarios
           </Link>
-          <Link to={"/orders"} className=" sideName d-block">
+          <Link to={"/ordenes"} className=" sideName d-block">
             <i className="bi bi-cart-check"></i> Órdenes
           </Link>
         </div>
@@ -49,7 +49,7 @@ function AdminSidebar() {
                 Cerrar sesión
               </button>
             ) : (
-              <Link to={"/login"} className="btn text-white text btn-log">
+              <Link to={"/registrarse"} className="btn text-white text btn-log">
                 Iniciar sesión
               </Link>
             )}

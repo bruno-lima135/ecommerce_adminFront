@@ -223,7 +223,7 @@ function EditProduct() {
               Guardar cambios
             </button>
           </form>
-          <Link to="/products" className="mt-4 btn border">
+          <Link to="/productos" className="mt-4 btn border">
             <i class="bi bi-arrow-left fs-5"></i>
           </Link>
         </div>

@@ -90,7 +90,7 @@ function EditUser() {
               Guardar cambios
             </button>
           </form>
-          <Link to={"/users"} className="btn border mt-4">
+          <Link to={"/usuarios"} className="btn border mt-4">
             <i class="bi bi-arrow-left fs-5"></i>
           </Link>
           <p className="text-success">{msg}</p>

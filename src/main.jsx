@@ -25,17 +25,17 @@ const router = createBrowserRouter([
 
     children: [
       { path: "/", element: <Dashboard /> },
-      { path: "/users", element: <Users /> },
-      { path: "/products", element: <Products /> },
-      { path: "/Orders", element: <Orders /> },
+      { path: "/usuarios", element: <Users /> },
+      { path: "/productos", element: <Products /> },
+      { path: "/ordenes", element: <Orders /> },
     ],
   },
-  { path: "/login", element: <Login /> },
-  { path: "/orders/edit/:orderId", element: <StateEdit /> },
-  { path: "/products/edit/:productId", element: <EditProduct /> },
-  { path: "/products/addProduct", element: <AddProduct /> },
-  { path: "/users/addUser", element: <AddUser /> },
-  { path: "/users/:userId", element: <EditUser /> },
+  { path: "/registrarse", element: <Login /> },
+  { path: "/ordenes/editar/:ordenId", element: <StateEdit /> },
+  { path: "/productos/editar/:productoId", element: <EditProduct /> },
+  { path: "/productos/añadirProducto", element: <AddProduct /> },
+  { path: "/usuarios/añadirUsuario", element: <AddUser /> },
+  { path: "/usuarios/:usuarioId", element: <EditUser /> },
 ]);
 
 createRoot(document.getElementById("root")).render(

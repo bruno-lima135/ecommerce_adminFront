@@ -16,7 +16,7 @@ function StateEdit() {
           </select>
           <button className="btn btn-success mt-4">Guardar cambios</button>
         </form>
-        <Link to={"/orders"}>
+        <Link to={"/ordenes"}>
           <i class="bi bi-arrow-left fs-2 text-black"></i>
         </Link>
       </div>
