@@ -178,7 +178,9 @@ function Users() {
               onChange={(event) => setLastName(event.target.value)}
             />
 
-            <label htmlFor="email">Correo</label>
+            <label htmlFor="email" className="mt-2">
+              Correo
+            </label>
             <input
               className="form-control"
               type="email"
@@ -188,7 +190,9 @@ function Users() {
               onChange={(event) => setEmail(event.target.value)}
               required
             />
-            <label htmlFor="password">Contraseña</label>
+            <label htmlFor="password" className="mt-2">
+              Contraseña
+            </label>
             <input
               className="form-control"
               type="password"
