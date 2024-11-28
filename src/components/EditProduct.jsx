@@ -165,7 +165,7 @@ function EditProduct() {
             />
 
             <p className="mt-2">Ingredientes</p>
-            <div className="form-check mt-2">
+            <div className="form-check mt-1">
               <input
                 type="checkbox"
                 className="form-check-input"

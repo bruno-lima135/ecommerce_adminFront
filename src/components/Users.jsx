@@ -166,7 +166,9 @@ function Users() {
               onChange={(event) => setFirstName(event.target.value)}
             />
 
-            <label htmlFor="lastname">Apellido</label>
+            <label htmlFor="lastname" className="mt-2">
+              Apellido
+            </label>
             <input
               className="form-control"
               type="text"
