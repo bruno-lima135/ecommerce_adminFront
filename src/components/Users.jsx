@@ -126,7 +126,7 @@ function Users() {
 
                 <th>
                   <Button
-                    className="btn btn-warning"
+                    className="btn "
                     variant=""
                     onClick={() => {
                       setShow2(true);
@@ -138,7 +138,7 @@ function Users() {
 
                   <button
                     onClick={() => handleDestroy(user.id)}
-                    className=" ms-1 btn btn-secondary "
+                    className=" ms-1 btn "
                   >
                     <i class="bi bi-trash text-danger bg-transparent"></i>
                   </button>
