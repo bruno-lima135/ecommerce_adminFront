@@ -62,13 +62,13 @@ function Products() {
                     to={`/products/edit/${product.id}`}
                     className=" btn bg-warning"
                   >
-                    Editar
+                    <i class="bi bi-pencil-square text-primary"></i>
                   </Link>
                   <button
                     onClick={(event) => handleDestroy(product.id)}
                     className="ms-1 btn btn-secondary"
                   >
-                    Eliminar
+                    <i class="bi bi-trash text-danger"></i>
                   </button>
                 </th>
               </tr>
