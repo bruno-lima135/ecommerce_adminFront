@@ -10,7 +10,7 @@ import { Outlet } from "react-router-dom";
 function App() {
   return (
     <>
-      <div className="row">
+      <div className="row m-0 p-0">
         <div className="col-md-2">
           <AdminSidebar />
         </div>
