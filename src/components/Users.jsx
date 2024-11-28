@@ -133,14 +133,14 @@ function Users() {
                       getAdmin(user.id);
                     }}
                   >
-                    <i class="bi bi-pencil-square text-primary"></i>
+                    <i class="bi bi-pencil-square text-primary bg-transparent"></i>
                   </Button>
 
                   <button
                     onClick={() => handleDestroy(user.id)}
                     className=" ms-1 btn btn-secondary "
                   >
-                    <i class="bi bi-trash text-danger"></i>
+                    <i class="bi bi-trash text-danger bg-transparent"></i>
                   </button>
                 </th>
               </tr>
