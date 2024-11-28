@@ -3,6 +3,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { toast } from "react-toastify";
 
 function Users() {
   const [usersData, setUsersData] = useState([]);
@@ -79,7 +80,11 @@ function Users() {
     setRefresh(!refresh);
   }
 
-  async function handleDestroy(adminId) {
+  async function handleDestroy(adminId, adminEmail) {
+    if (adminEmail === "admin@a.com") {
+      return toast.error("El administrador por defecto no puede eliminarse.");
+    }
+
     const response = await axios({
       method: "DELETE",
       url: `${import.meta.env.VITE_API_URL}/admins/destroy/${adminId}`,
@@ -137,7 +142,7 @@ function Users() {
                   </Button>
 
                   <button
-                    onClick={() => handleDestroy(user.id)}
+                    onClick={() => handleDestroy(user.id, user.email)}
                     className=" ms-1 btn "
                   >
                     <i class="bi bi-trash text-danger bg-transparent"></i>

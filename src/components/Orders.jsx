@@ -59,7 +59,7 @@ function Orders() {
                     <tr key={order.id}>
                       <th className="fw-normal">{order.id}</th>
                       <th className="fw-normal">{order.buyer}</th>
-                      <th className="fw-normal">$ {order.buyerName}</th>
+                      <th className="fw-normal">{order.buyerName}</th>
                       <th className="fw-normal">$ {order.totalPrice}</th>
                       <th className="fw-normal">{order.state}</th>
                       <th>
