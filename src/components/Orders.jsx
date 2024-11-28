@@ -56,10 +56,10 @@ function Orders() {
                 {orders &&
                   orders.map((order) => (
                     <tr key={order.id}>
-                      <th>{order.id}</th>
-                      <th>{order.buyer}</th>
-                      <th>$ {order.totalPrice}</th>
-                      <th>{order.state}</th>
+                      <th className="fw-normal">{order.id}</th>
+                      <th className="fw-normal">{order.buyer}</th>
+                      <th className="fw-normal">$ {order.totalPrice}</th>
+                      <th className="fw-normal">{order.state}</th>
                       <th>
                         <form
                           action=""

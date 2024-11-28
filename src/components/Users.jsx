@@ -119,10 +119,10 @@ function Users() {
           <tbody>
             {usersData.map((user) => (
               <tr key={user.id}>
-                <th>{user.id}</th>
-                <th>{user.firstname}</th>
-                <th>{user.lastname}</th>
-                <th>{user.email}</th>
+                <th className="fw-normal">{user.id}</th>
+                <th className="fw-normal">{user.firstname}</th>
+                <th className="fw-normal">{user.lastname}</th>
+                <th className="fw-normal">{user.email}</th>
 
                 <th>
                   <Button
