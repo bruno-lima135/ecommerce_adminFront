@@ -58,15 +58,12 @@ function Products() {
                 <th className="fw-normal">$U {product.price}</th>
                 <th className="fw-normal">{product.stock}</th>
                 <th>
-                  <Link
-                    to={`/products/edit/${product.id}`}
-                    className=" btn bg-warning"
-                  >
+                  <Link to={`/products/edit/${product.id}`} className=" btn ">
                     <i class="bi bi-pencil-square text-primary bg-transparent"></i>
                   </Link>
                   <button
                     onClick={(event) => handleDestroy(product.id)}
-                    className="ms-1 btn btn-secondary"
+                    className="ms-1 btn"
                   >
                     <i class="bi bi-trash text-danger bg-transparent"></i>
                   </button>
