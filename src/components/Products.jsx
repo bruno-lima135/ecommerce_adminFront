@@ -15,7 +15,6 @@ function Products() {
         url: `${import.meta.env.VITE_API_URL}/products/juices`,
         headers: { Authorization: `Bearer ${userData.token}` },
       });
-
       setProducts(response.data);
     }
     getProducts();
@@ -45,6 +44,7 @@ function Products() {
           <thead>
             <tr>
               <th>Nombre</th>
+              <th>Categoría</th>
               <th>Precio</th>
               <th>Stock</th>
               <th>Acción</th>
@@ -55,6 +55,8 @@ function Products() {
             {products.map((product) => (
               <tr key={product.id} className="fw-normal">
                 <th className="fw-normal">{product.name}</th>
+                <th className="fw-normal">{product.category}</th>
+
                 <th className="fw-normal">$U {product.price}</th>
                 <th className="fw-normal">{product.stock}</th>
                 <th>

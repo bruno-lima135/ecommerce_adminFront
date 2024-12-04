@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
 
 function Users() {
   const [usersData, setUsersData] = useState([]);
@@ -14,30 +15,54 @@ function Users() {
   const handleShow = () => setShow(true);
   const [show2, setShow2] = useState(false);
   const handleClose2 = () => setShow2(false);
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [Id, setId] = useState(5);
+  const [Id, setId] = useState(0);
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm();
 
-  async function handleAddAdmin(event) {
-    event.preventDefault();
+  const onSubmit = async (data) => {
     const response = await axios({
       method: "POST",
       url: `${import.meta.env.VITE_API_URL}/admins/store`,
-      data: { firstname, lastname, email, password },
+      data: {
+        firstname: data.firstname,
+        lastname: data.lastname,
+        email: data.email,
+        password: data.password,
+      },
       headers: { Authorization: `Bearer ${token.token}` },
     });
     setEmail("");
     setPassword("");
     setUsersData(response.data);
-  }
+  };
+
+  const onSubmitEdit = async (data) => {
+    const response = await axios({
+      method: "POST",
+      url: `${import.meta.env.VITE_API_URL}/admins/edit/ `,
+      data: {
+        Id,
+        firstname: data.firstname,
+        lastname: data.lastname,
+        email: data.email,
+        password: data.password,
+      },
+      headers: { Authorization: `Bearer ${token.token}` },
+    });
+
+    setRefresh(!refresh);
+  };
 
   function cleanInputs() {
-    setFirstName("");
-    setLastName("");
-    setEmail("");
-    setPassword("");
+    setValue("firstname", "");
+    setValue("lastname", "");
+    setValue("email", "");
+    setValue("password", "");
   }
 
   useEffect(() => {
@@ -62,22 +87,9 @@ function Users() {
 
     const { id, firstname, lastname, email, password } = response.data;
     setId(id);
-    setFirstName(firstname);
-    setLastName(lastname);
-    setEmail(email);
-  }
-
-  async function handleEditAdmin(event, adminId) {
-    event.preventDefault();
-
-    const response = await axios({
-      method: "POST",
-      url: `${import.meta.env.VITE_API_URL}/admins/edit/ `,
-      data: { Id, firstname, lastname, email, password },
-      headers: { Authorization: `Bearer ${token.token}` },
-    });
-
-    setRefresh(!refresh);
+    setValue("firstname", firstname);
+    setValue("lastname", lastname);
+    setValue("email", email);
   }
 
   async function handleDestroy(adminId, adminEmail) {
@@ -145,7 +157,7 @@ function Users() {
                     onClick={() => handleDestroy(user.id, user.email)}
                     className=" ms-1 btn "
                   >
-                    <i class="bi bi-trash text-danger bg-transparent"></i>
+                    <i className="bi bi-trash text-danger bg-transparent"></i>
                   </button>
                 </th>
               </tr>
@@ -160,15 +172,14 @@ function Users() {
           <Modal.Title>Crear usuario</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form action="" onSubmit={(event) => handleAddAdmin(event)}>
+          <form action="" onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="firstname">Nombre</label>
             <input
               className="form-control"
               type="text"
               name="firstname"
               id="firstname"
-              value={firstname}
-              onChange={(event) => setFirstName(event.target.value)}
+              {...register("firstname")}
             />
 
             <label htmlFor="lastname" className="mt-2">
@@ -179,8 +190,7 @@ function Users() {
               type="text"
               name="lastname"
               id="lastname"
-              value={lastname}
-              onChange={(event) => setLastName(event.target.value)}
+              {...register("lastname")}
             />
 
             <label htmlFor="email" className="mt-2">
@@ -191,8 +201,7 @@ function Users() {
               type="email"
               name="email"
               id="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
+              {...register("email")}
               required
             />
             <label htmlFor="password" className="mt-2">
@@ -203,8 +212,7 @@ function Users() {
               type="password"
               name="password"
               id="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
+              {...register("password")}
               required
             />
 
@@ -218,15 +226,14 @@ function Users() {
           <Modal.Title>Editar usuario</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form action="" onSubmit={(event) => handleEditAdmin(event)}>
+          <form action="" onSubmit={handleSubmit(onSubmitEdit)}>
             <label htmlFor="firstname">Nombre</label>
             <input
               className="form-control"
               type="text"
               name="firstname"
               id="firstname"
-              value={firstname}
-              onChange={(event) => setFirstName(event.target.value)}
+              {...register("firstname")}
             />
 
             <label htmlFor="lastname">Apellido</label>
@@ -235,8 +242,7 @@ function Users() {
               type="text"
               name="lastname"
               id="lastname"
-              value={lastname}
-              onChange={(event) => setLastName(event.target.value)}
+              {...register("lastname")}
             />
 
             <label htmlFor="email">Correo</label>
@@ -245,8 +251,7 @@ function Users() {
               type="email"
               name="email"
               id="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
+              {...register("email")}
             />
             <label htmlFor="password">Contraseña</label>
             <input
@@ -254,8 +259,7 @@ function Users() {
               type="password"
               name="password"
               id="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
+              {...register("password")}
             />
 
             <button className="mt-4 w-100 btn btn-success">

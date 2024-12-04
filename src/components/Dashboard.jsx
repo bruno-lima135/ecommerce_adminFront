@@ -99,6 +99,7 @@ function Dashboard() {
               <tr>
                 <th>Id</th>
                 <th>Comprador</th>
+                <th>Nombre y apellido</th>
                 <th>Precio total</th>
                 <th>Estado</th>
               </tr>
@@ -109,6 +110,8 @@ function Dashboard() {
                   <tr key={order.id}>
                     <th className="fw-normal">{order.id}</th>
                     <th className="fw-normal">{order.buyer}</th>
+                    <th className="fw-normal">{order.buyerName}</th>
+
                     <th className="fw-normal">$U {order.totalPrice}</th>
                     <th className="fw-normal">{order.state}</th>
                   </tr>

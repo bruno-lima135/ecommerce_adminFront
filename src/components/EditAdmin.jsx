@@ -2,8 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { useForm } from "react-hook-form";
 
 function EditUser() {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
+
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -46,15 +55,14 @@ function EditUser() {
         <div className="shadow rounded border p-5">
           <h1>Editar usuario</h1>
 
-          <form action="" onSubmit={(event) => handleEditAdmin(event)}>
+          <form action="" onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="firstname">Nombre</label>
             <input
               className="form-control"
               type="text"
               name="firstname"
               id="firstname"
-              value={firstname}
-              onChange={(event) => setFirstName(event.target.value)}
+              {...register("firstname")}
             />
 
             <label htmlFor="lastname">Apellido</label>
@@ -63,8 +71,7 @@ function EditUser() {
               type="text"
               name="lastname"
               id="lastname"
-              value={lastname}
-              onChange={(event) => setLastName(event.target.value)}
+              {...register("lastname")}
             />
 
             <label htmlFor="email">Correo</label>
@@ -73,8 +80,7 @@ function EditUser() {
               type="email"
               name="email"
               id="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
+              {...register("email")}
             />
             <label htmlFor="password">Contraseña</label>
             <input
@@ -82,8 +88,7 @@ function EditUser() {
               type="password"
               name="password"
               id="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
+              {...register("password")}
             />
 
             <button className="mt-4 w-100 btn btn-success">
@@ -91,7 +96,7 @@ function EditUser() {
             </button>
           </form>
           <Link to={"/usuarios"} className="btn border mt-4">
-            <i class="bi bi-arrow-left fs-5"></i>
+            <i className="bi bi-arrow-left fs-5"></i>
           </Link>
           <p className="text-success">{msg}</p>
         </div>

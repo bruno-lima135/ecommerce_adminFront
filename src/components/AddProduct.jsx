@@ -3,61 +3,43 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
 
 function AddProduct() {
-  const userData = useSelector((state) => state.user);
-  const [msg, setMsg] = useState("");
-  const [artImage, setArtImage] = useState("");
-  const [selectedItems, setSelectedItems] = useState([]);
-  const [image, setImage] = useState({});
-  const [formData, setFormData] = useState({
-    name: "",
-    description: "",
-    price: Number,
-    stock: Number,
-    category: "",
-    outstanding: false,
-    slug: "",
-  });
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
-  const handleCheckboxChange = (e) => {
-    const value = e.target.value;
-    if (e.target.checked) {
-      setSelectedItems([...selectedItems, value]);
-    } else {
-      setSelectedItems(selectedItems.filter((item) => item !== value));
-    }
-  };
-
-  const handleChange = (event) => {
-    const inputName = event.target.name;
-    const value = event.target.value;
-    setFormData((prev) => {
-      return { ...prev, [inputName]: value };
-    });
-  };
-
-  async function handleAddProduct(event) {
-    event.preventDefault();
-
-    const { name, description, price, stock, category, outstanding, slug } =
-      formData;
-    const fData = new FormData();
-    fData.append("name", name);
-    fData.append("description", description);
-    fData.append("price", price);
-    fData.append("stock", stock);
-    fData.append("category", category);
-    fData.append("outstanding", outstanding);
-    fData.append("slug", slug);
-    fData.append("ingredients", selectedItems);
-    fData.append("image", image);
+  const onSubmit = async (data) => {
+    const {
+      name,
+      description,
+      price,
+      stock,
+      category,
+      outstanding,
+      slug,
+      ingredients,
+    } = data;
 
     const response = await axios({
       method: "POST",
       url: `${import.meta.env.VITE_API_URL}/products/store`,
 
-      data: fData,
+      data: {
+        name,
+        description,
+        price,
+        stock,
+        category,
+        outstanding,
+        slug,
+        ingredients: ingredients.toString(),
+        image,
+      },
       headers: {
         Authorization: `Bearer ${userData.token}`,
         "Content-Type": "multipart/form-data",
@@ -65,35 +47,38 @@ function AddProduct() {
     });
 
     return setMsg(response.data);
-  }
+  };
 
-  console.log(selectedItems);
+  const userData = useSelector((state) => state.user);
+  const [msg, setMsg] = useState("");
+  const [image, setImage] = useState({});
+
   return (
     <>
       <div className="container mt-5">
         <div className="d-flex justify-content-center  ">
           <div className="border p-4 rounded shadow">
-            <form onSubmit={(event) => handleAddProduct(event)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <h1 className="text-center">Añadir producto</h1>
               <div className="mt-5 d-flex">
                 <div>
                   <label htmlFor="name">Nombre</label>
                   <input
                     className="form-control"
-                    onChange={handleChange}
                     type="text"
                     name="name"
                     id="name"
                     required
+                    {...register("name")}
                   />
                   <label htmlFor="name" className="mt-2">
                     Descripción
                   </label>
                   <textarea
-                    onChange={handleChange}
                     className="form-control"
                     name="description"
                     id="description"
+                    {...register("description")}
                   ></textarea>
                   <label htmlFor="image" className="mt-3">
                     Imagen
@@ -102,8 +87,9 @@ function AddProduct() {
                     name="image"
                     className="form-control"
                     type="file"
+                    required
                     onChange={(event) => setImage(event.target.files[0])}
-                  />{" "}
+                  />
                   <label htmlFor="price" className="mt-2">
                     Precio
                   </label>
@@ -112,8 +98,8 @@ function AddProduct() {
                     type="number"
                     name="price"
                     id="price"
-                    onChange={handleChange}
                     required
+                    {...register("price")}
                   />
                   <div className="d-flex align-items-center mt-5">
                     <button className="btn btn-success w-50  ">
@@ -132,8 +118,8 @@ function AddProduct() {
                     type="number"
                     name="stock"
                     id="stock"
-                    onChange={handleChange}
                     required
+                    {...register("stock")}
                   />
                   <label htmlFor="category" className="mt-2">
                     Categoria
@@ -142,8 +128,8 @@ function AddProduct() {
                     className="form-control"
                     name="category"
                     id="category"
-                    onChange={handleChange}
                     defaultValue={"juices"}
+                    {...register("category")}
                   >
                     <option value="bars">Barras</option>
                     <option value="juices">Jugos</option>
@@ -155,7 +141,7 @@ function AddProduct() {
                     className="form-control"
                     name="outstanding"
                     id="outstanding"
-                    onChange={handleChange}
+                    {...register("outstanding")}
                   >
                     <option value="true">Verdadero</option>
                     <option value="false">Falso</option>
@@ -168,8 +154,9 @@ function AddProduct() {
                     type="text"
                     name="slug"
                     id="slug"
-                    onChange={handleChange}
+                    {...register("slug")}
                   />
+
                   <span className="mt-2">Ingredientes</span>
                   <div className="form-check mt-2">
                     <input
@@ -178,7 +165,7 @@ function AddProduct() {
                       id="tomato"
                       name="tomato"
                       value="tomate"
-                      onChange={handleCheckboxChange}
+                      {...register("ingredients")}
                     />
                     <label htmlFor="tomato" className="form-check-label">
                       Tomate
@@ -192,7 +179,7 @@ function AddProduct() {
                       id=""
                       name="carrot"
                       value="zanahoria"
-                      onChange={handleCheckboxChange}
+                      {...register("ingredients")}
                     />
                     <label className="form-check-label" htmlFor="carrot">
                       Zanahoria
@@ -206,7 +193,7 @@ function AddProduct() {
                       id="apple"
                       name="apple"
                       value="manzana"
-                      onChange={handleCheckboxChange}
+                      {...register("ingredients")}
                     />
                     <label className="form-check-label" htmlFor="apple">
                       Manzana
@@ -219,7 +206,7 @@ function AddProduct() {
                       name="orange"
                       value="naranja"
                       className="form-check-input"
-                      onChange={handleCheckboxChange}
+                      {...register("ingredients")}
                     />
                     <label className="form-check-label" htmlFor="orange">
                       Naranja
